@@ -87,8 +87,8 @@ WSGI_APPLICATION = 'coreAPI.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'project_db',
-        'USER': 'mysql_user',
+        'NAME': 'pcms_db',
+        'USER': 'pcms_user',
         'PASSWORD': 'root$password1',
         'HOST': '127.0.0.1',
         'PORT': '3306',
