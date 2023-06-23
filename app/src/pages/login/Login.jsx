@@ -14,8 +14,8 @@ const Login = () => {
                 <img src={image} className="w-[150px]" />
               </div>
               <div className="flex flex-col gap-5 px-5 my-10">
-                <Input label="Username" defaultValue="name" type="text" placeholder="Type your username" />
-                <Input label="Password" defaultValue="name" type="password" placeholder="Type your Password" />
+                <Input label="Username" defaultValue="name" type="text" placeholder="Type your username" className="input-md" />
+                <Input label="Password" defaultValue="name" type="password" placeholder="Type your Password" className="input-md" />
                 <Text className="text-left">Forgot Your password ?<p className="text-xs">please contact your system administrator</p></Text>
                 <IconContainer className="flex space-x-5 cursor-pointer w-[50%] mx-auto">
                   <div className="crelative">

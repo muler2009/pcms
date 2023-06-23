@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '../src/assets/css/index.css';
+import { Provider } from 'react-redux'
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -8,7 +9,7 @@ import {
 } from 'react-router-dom'
 import { PageLayout } from './layout/PageLayout';
 import Login from './pages/login/Login';
-
+import store from './store/store';
 
 {/* creating page routes */}
 const router = createBrowserRouter(
@@ -22,8 +23,11 @@ const router = createBrowserRouter(
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <Provider store={store}>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </Provider>
+
 );
 
