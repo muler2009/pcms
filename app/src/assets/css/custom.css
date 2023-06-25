@@ -1,0 +1,31 @@
+/* Customize the background color of the date picker */
+.react-datepicker {
+    background-color: #f0f0f0;
+    font-family: Poppins;
+    float: right;
+   
+  }
+  
+  /* Customize the font size of the month and year header */
+  .react-datepicker__current-month,
+  .react-datepicker__current-year {
+    font-size: 1.2rem;
+  }
+  
+  /* Customize the font size of the days of the week */
+  .react-datepicker__day-name,
+  .react-datepicker__day {
+    font-size: 12px;
+    background-color: #fff;
+  }
+  
+  /* Customize the background color of the selected date */
+  .react-datepicker__day--selected {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Customize the hover color of the dates */
+  .react-datepicker__day:hover {
+    background-color: #f0f0f0;
+  }

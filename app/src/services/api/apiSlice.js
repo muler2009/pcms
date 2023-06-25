@@ -9,7 +9,7 @@ const apiSlice = createApi({
     endpoints: builder => ({})
 })
 
-export const { useGetUserQuery } = apiSlice;
+
 export default apiSlice;
 
 

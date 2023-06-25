@@ -1,21 +1,32 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {BsArrowRightCircle, BsFillQuestionOctagonFill} from 'react-icons/bs'
 import image from '../../assets/images/image.png'
-import { Input, Button } from '../../components/Reuseable'
+import { Input } from '../../components/Reuseable'
 import { IconContainer, Text } from '../../assets/css/Container'
+import useLogin from '../../hooks/useLogin'
 
 const Login = () => {
-  const [name, setName] = useState("")
+
+  const { login_attributes, InputchangeHandler } = useLogin()
   return (
     <div className="bg-bg-img object-cover object-center container mx-auto">
         <div className="flex flex-col justify-center items-center py-10 mt-10">
             <form className="w-[35%] mx-auto border-[1px] px-5 py-10 rounded-lg" onSubmit={(event) => event.preventDefault()}>
               <div className="flex justify-center items-center">
-                <img src={image} className="w-[150px]" />
+                <img src={image} className="w-[150px]" alt="Company Logo" />
               </div>
               <div className="flex flex-col gap-5 px-5 my-10">
-                <Input label="Username" defaultValue="name" type="text" placeholder="Type your username" className="input-md" />
-                <Input label="Password" defaultValue="name" type="password" placeholder="Type your Password" className="input-md" />
+                <Input 
+                  label="Username"  
+                  type="text" 
+                  id="username"
+                  name="username"
+                  placeholder="username" 
+                  className="input-md" 
+                  value={login_attributes.username} 
+                  onChange={InputchangeHandler} 
+                />
+                <Input label="Password" type="password" id="password" name="password" value={login_attributes.password} onChange={InputchangeHandler} placeholder="Password" className="input-md" />
                 <Text className="text-left">Forgot Your password ?<p className="text-xs">please contact your system administrator</p></Text>
                 <IconContainer className="flex space-x-5 cursor-pointer w-[50%] mx-auto">
                   <div className="crelative">

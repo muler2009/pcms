@@ -10,6 +10,8 @@ import {
 import { PageLayout } from './layout/PageLayout';
 import Login from './pages/login/Login';
 import store from './store/store';
+import Test from './pages/testpage/Test';
+import RegistrationForm from './components/RegisterForm';
 
 {/* creating page routes */}
 const router = createBrowserRouter(
@@ -17,6 +19,9 @@ const router = createBrowserRouter(
     <Route element={<PageLayout />}>
       {/* public route */}
       <Route path='/' element={<Login />} />
+      <Route path='test_api' element={<Test />} />
+      <Route path='register' element={<RegistrationForm />} />
+
     </Route>
   )
 )

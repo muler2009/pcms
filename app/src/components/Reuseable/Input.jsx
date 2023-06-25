@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
 
-const Input = ({label, defaultValue, type, id, name, onChange, placeholder, className}) => {
-
-  const [value, setValue] = useState(defaultValue)
-
+const Input = ({id, type, name, placeholder, onChange, value, label,className}) => {
   return (
         <div className="font-Poppins flex flex-col gap-3 text-sm">
             <label htmlFor={name} className="text-[15px]">{label}</label>
             <input 
-                type={type}
                 id={id}
+                type={type}
                 name={name}  
                 className={className}
                 placeholder={placeholder}
+                value={value}
+                onChange={onChange}
             />
         </div>
   )
