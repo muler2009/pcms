@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 
-const CheckBok = ({label, name, id, value, description}) => {
-    const [isChecked, setIsChecked] = useState(false)
-
+const CheckBok = ({label, name, id, value, description, onChange}) => {
     return (
         <div className='flex flex-col font-Poppins'>
             <label className=" text-gray-500 text-sm mb-1">{description}</label>
@@ -13,8 +11,8 @@ const CheckBok = ({label, name, id, value, description}) => {
                         id={id} 
                         name={name} 
                         value={value}
-                        checked={isChecked}
-                        onChange={(event) => setIsChecked(prev => !prev)}
+                        checked={value}
+                        onChange={onChange}
                         className="ml-3 rounded-none"
                     />
                 </label>

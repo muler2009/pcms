@@ -5,9 +5,11 @@ import '../../assets/css/custom.css'
 import range from '../../utils/range'
 import { getYear, getMonth } from 'date-fns';
 import * as Bs from 'react-icons/bs'
+import useRegister from '../../hooks/useRegister';
 
 
-const DatePickerComponent = ({ className }) => {
+const DatePickerComponent = ({ className, selected, onChange }) => {
+  const { register, handleDateChange } = useRegister()
   const [startDate, setStartDate] = useState(null)
   const years = range(1990, getYear(new Date()) + 1, 1);
   const months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", ];
@@ -48,8 +50,8 @@ const DatePickerComponent = ({ className }) => {
 
             </div>
         )}
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
+        selected={selected}
+        onChange={onChange}
         isClearable
         dateFormat='dd/MM/yyyy'            
     />

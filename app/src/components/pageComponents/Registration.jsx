@@ -3,10 +3,10 @@ import { format } from 'date-fns'
 import * as Md from 'react-icons/md'
 import * as Vsc from 'react-icons/vsc'
 import * as Bi from 'react-icons/bi'
-import { InputField, Input, SelectInput, Button, InputU } from './Reuseable'
-import image from '../assets/images/image.png'
-import IconInput from './Reuseable/IconInput'
-import { department, gender } from '../constants/data/department'
+import { InputField, Input, SelectInput } from '../Reuseable'
+import image from '../../assets/images/image.png'
+import IconInput from '../Reuseable/IconInput'
+import { department, gender } from '../../constants/data/department'
 
 
 const Registration = (props) => {

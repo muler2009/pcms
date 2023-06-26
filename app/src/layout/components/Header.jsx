@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import Registration from '../../components/Registration'
+import Registration from '../../components/pageComponents/Registration'
 
 const Header = () => {
   const [register, setRegister] = useState(false)

@@ -4,6 +4,8 @@ import InputField from "./InputField";
 import IconInput from "./IconInput";
 import SelectInput from "./SelectInput";
 import InputU from "./InputU";
+import DatePickerComponent from "./DatePicker";
+import CheckBok from "./CheckBok";
 
 export {
     Input,
@@ -12,6 +14,9 @@ export {
     IconInput,
     SelectInput,
     InputU,
+    DatePickerComponent,
+    CheckBok,
+
 
 
 }
