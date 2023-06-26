@@ -7,7 +7,7 @@ import { getYear, getMonth } from 'date-fns';
 import * as Bs from 'react-icons/bs'
 
 
-const DatePickerComponent = ({className}) => {
+const DatePickerComponent = ({ className }) => {
   const [startDate, setStartDate] = useState(null)
   const years = range(1990, getYear(new Date()) + 1, 1);
   const months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", ];
@@ -48,13 +48,10 @@ const DatePickerComponent = ({className}) => {
 
             </div>
         )}
-
         selected={startDate}
         onChange={(date) => setStartDate(date)}
         isClearable
-        placeholderText='Date'
-  
-            
+        dateFormat='dd/MM/yyyy'            
     />
     
   )

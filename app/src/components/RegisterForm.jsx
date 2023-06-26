@@ -17,7 +17,7 @@ const RegistrationForm = () => {
 
   return (
     <React.Fragment>
-        <div className="w-full flex justify-center items-center space-x-5">
+        <div className="w-full flex justify-start items-start space-x-5 font-Poppins px-5">
             <div className="w-2/3 bg-white my-10 border-[1px] border-[#ddd]">
                 <div className="flex justify-between items-center px-10 py-5">
                     <div className="w-1/4">
@@ -129,7 +129,7 @@ const RegistrationForm = () => {
                     <h1 className="font-Oswald text-[25px] uppercase">User Test Registration</h1>
                 </div>
                 <form onSubmit={(event) => event.preventDefault()}>
-                    <div className="flex flex-col gap-10 py-5 px-5">
+                    <div className="flex flex-col gap-8 py-5 px-5">
                         <div className="flex space-x-5">
                             <InputField label="First Name" type="text" id="first_name" name="first_name" placeholder="First Name" />
                             <InputField label="Last Name" type="text" id="last_name" name="last_name" placeholder="Last Name" />
@@ -149,13 +149,29 @@ const RegistrationForm = () => {
 
                         </div>
 
-                        <div className="flex space-x-5 border-2 border-black py-2 px-4">
-                            <div className=""><CheckBok label="Staff" /></div>
-                            <div className=""><CheckBok label="Is active" /></div>
-                           
-
-                            
+                        <div className="flex space-x-5 ">
+                            <div className='w-1/2 flex justify-between items-start space-x-5'>
+                                <CheckBok label="Staff" description="Staff User"/>
+                                <CheckBok label="Active" description="Is the user active?" />
+                            </div>
+                            <div className="w-1/2">
+                                <InputField label="Email" type="email" id="email" name="email" placeholder="Email address" />
+                                <p className="text-xs text-gray-400">Ex: email@domain.com</p>
+                            </div>     
                         </div>
+
+                        <InputField label="Username" type="text" id="username" name="username" placeholder="Username" />
+
+                        <div className="flex justify-start items-start space-x-5">
+                            <InputField label="Password" type="password" id="password" name="password" placeholder="Password" />
+                            <InputField label="Confirm password" type="password" id="confirm_password" name="confirm_password" placeholder="Confirm password" />
+
+
+
+                        </div>
+                        
+
+                        
 
                        
                     

@@ -1,0 +1,8 @@
+# to sink the installed packages into a requirement.txt file
+pip freeze > requirement.txt
+
+# install the coverage tool in the virtual enviroment 
+pip install coverage
+
+# to run coverage test by omitting files in venv
+coverage run --omit='*/venv/*' manage.py test
