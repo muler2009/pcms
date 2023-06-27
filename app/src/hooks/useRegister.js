@@ -53,4 +53,4 @@ const useRegister = () => {
   }
 }
 
-export default useRegister
+export default useRegister;

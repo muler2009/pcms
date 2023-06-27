@@ -1,16 +1,15 @@
-import React, {useState} from 'react'
+import React from 'react'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../assets/css/custom.css'
 import range from '../../utils/range'
 import { getYear, getMonth } from 'date-fns';
 import * as Bs from 'react-icons/bs'
-import useRegister from '../../hooks/useRegister';
+
 
 
 const DatePickerComponent = ({ className, selected, onChange }) => {
-  const { register, handleDateChange } = useRegister()
-  const [startDate, setStartDate] = useState(null)
+  
   const years = range(1990, getYear(new Date()) + 1, 1);
   const months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", ];
   
@@ -47,7 +46,6 @@ const DatePickerComponent = ({ className, selected, onChange }) => {
                     ))}
                 </select>
                 <Bs.BsArrowRightCircleFill size={25} className="cursor-pointer" onClick={increaseMonth} disabled={nextMonthButtonDisabled} />
-
             </div>
         )}
         selected={selected}

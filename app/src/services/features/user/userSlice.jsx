@@ -8,9 +8,17 @@ const userSlice = apiSlice.injectEndpoints({
                 method: "GET"
                  
             })
+        }) ,
+
+        addUser: builder.mutation({
+            query: (data) => ({
+                url: `/users`,
+                method: "POST",
+                body: data
+            })
         })
     })
 })
 
-export const { useGetQuery } = userSlice;
+export const { useGetQuery, useAddUserMutation } = userSlice;
 export default userSlice;
