@@ -8,7 +8,7 @@ import { LoginErrorMessage } from '../errors/LoginErrorMessage'
 
 const Login = () => {
 
-  const { login_attributes, InputchangeHandler, onLoginClicked, setShow, show } = useLogin()
+  const { login_attributes, InputchangeHandler, onLoginClicked, loginFailedModal, setLoginFailedModal } = useLogin()
   return (
     <div className="bg-bg-img object-cover object-center container mx-auto">
         <div className="flex flex-col justify-center items-center py-10 mt-10">
@@ -49,7 +49,7 @@ const Login = () => {
               </div>            
             </form>
         </div>
-          <LoginErrorMessage setShow={setShow} show={show} />
+          <LoginErrorMessage setLoginFailedModal={setLoginFailedModal} loginFailedModal={loginFailedModal} />
     </div>
   )
 }

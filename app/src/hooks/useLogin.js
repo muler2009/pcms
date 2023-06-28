@@ -7,7 +7,7 @@ const useLogin = () => {
 
   const dispatch = useDispatch()
   const [loginUser, {isLoading, isSuccess}] = useLoginUserMutation()
-  const [show, setShow] = useState(false)
+  const [loginFailedModal, setLoginFailedModal] = useState(false)
 
    const [login_attributes, set] = useState({
       username: "",
@@ -29,7 +29,7 @@ const useLogin = () => {
 
    const onLoginClicked = async() => {
       if(login_attributes.username === "" || login_attributes.password === ""){
-        setShow(prev => !prev)
+        setLoginFailedModal(prev => !prev)
       }
       else{  
         dispatch(loginUser(login_attributes))
@@ -42,7 +42,7 @@ const useLogin = () => {
 
   return {
     login_attributes, 
-    show, setShow,
+    loginFailedModal, setLoginFailedModal,
     InputchangeHandler,
     onLoginClicked
   };

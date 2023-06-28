@@ -1,31 +1,27 @@
 import React from 'react'
 import * as Vsc from 'react-icons/vsc'
 import * as Bs from 'react-icons/bs'
+import * as Fa from 'react-icons/fa'
 
 export const LoginErrorMessage = (props) => {
-  const { show, setShow } = props
+  const {  loginFailedModal, setLoginFailedModal } = props
 
     return (
-        show && (
-            <div className='bg-black bg-opacity-20 inset-0 fixed top-0  flex justify-center'>
-                <div className="bg-[#e8e8e8] w-1/2 h-1/3 lg:w-1/3 lg:h-[25%] relative top-24 border-[1px] border-[#c2c2c2] rounded-lg">
-                    <div className={`flex justify-between items-center rounded-tl-lg rounded-tr-lg w-full px-5 py-3`}>
-                        <h1 className={`font-Roboto tracking-wide text-xl`}>Notification</h1>
-                        <Vsc.VscClose className={`hover:bg-red-400 cursor-pointer`} onClick={() => setShow(prev => !prev)} />
+        loginFailedModal && (
+            <div className="bg-black bg-opacity-5 inset-0 fixed top-0 flex justify-center items-center z-50 pb-10 font-Poppins">
+                <div className='w-1/3 mx-auto bg-[#9eb9d4] my-10 flex flex-col border-[1px] px-1 py-0.5 border-black rounded-t-lg'>
+                    <div className='text-black flex justify-between items-center px-4 py-2'>
+                        <h1 className='font-Poppins'>Notification</h1>
+                        <Vsc.VscClose size={20} onClick={() => setLoginFailedModal(prev => !prev)}/>
                     </div>
-        
-                    <div className="flex flex-col px-10 ">
-                        <div className="flex space-x-8 mt-5">
-                            <Bs.BsQuestionCircleFill size={70}/>
-                            <h1 className="flex justify-end items-center text-[14px] font-Poppins">Please Username or Password is Empty</h1>
+                    <div className="bg-[#f0f0f0] flex flex-col gap-5 px-16 py-5">
+                        <div className='flex items-center space-x-2'>
+                           <Fa.FaTimesCircle color='red'/>
+                           <h1 className="font-Poppins">Login Failed!</h1>
                         </div>
-                        <div className="flex space-x-5 w-1/2 mx-auto">
-                            <button className="btn-sm bg-[#fcfcfc] px-5">Logout</button>
-                            <button className="btn-sm bg-[#fcfcfc] px-5">Cancel</button>
-        
+                        <div className='flex items-center space-x-2'>
+                           <h1>Username or Password is empty</h1>
                         </div>
-                    
-        
                     </div>
                 </div>
             </div>
