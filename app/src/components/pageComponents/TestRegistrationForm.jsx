@@ -28,7 +28,6 @@ const TestRegistrationForm = () => {
                         <label className="font-Poppins text-sm absolute left-0 -top-3.5 peer-placeholder-shown:text-base text-gray-500 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-green-400">
                             Date of Birth
                         </label>                       
-
                     </div>
                     <SelectInput label="Gender" data={gender} type="text" htmlFor="gender" id="gender" name="gender" value={register.gender} onChange={registerationHandler} />
 

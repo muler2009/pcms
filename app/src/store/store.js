@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit"; 
-import  apiSlice from "../services/api/apiSlice";
+import { apiSlice } from "../services/api/apiSlice";
 
 // creating the store for pcms
 const store = configureStore({

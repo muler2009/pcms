@@ -4,10 +4,11 @@ import image from '../../assets/images/image.png'
 import { Input } from '../../components/Reuseable'
 import { IconContainer, Text } from '../../assets/css/Container'
 import useLogin from '../../hooks/useLogin'
+import { LoginErrorMessage } from '../errors/LoginErrorMessage'
 
 const Login = () => {
 
-  const { login_attributes, InputchangeHandler } = useLogin()
+  const { login_attributes, InputchangeHandler, onLoginClicked, setShow, show } = useLogin()
   return (
     <div className="bg-bg-img object-cover object-center container mx-auto">
         <div className="flex flex-col justify-center items-center py-10 mt-10">
@@ -30,7 +31,7 @@ const Login = () => {
                 <Text className="text-left">Forgot Your password ?<p className="text-xs">please contact your system administrator</p></Text>
                 <IconContainer className="flex space-x-5 cursor-pointer w-[50%] mx-auto">
                   <div className="crelative">
-                    <BsArrowRightCircle size={40} color='green' />
+                    <BsArrowRightCircle size={40} color='green' onClick={onLoginClicked}/>
                       <div class="hidden cabsolute bg-gray-900 text-white text-xs rounded py-1 px-2 whitespace-no-wrap">
                         Login
                       </div>
@@ -48,6 +49,7 @@ const Login = () => {
               </div>            
             </form>
         </div>
+          <LoginErrorMessage setShow={setShow} show={show} />
     </div>
   )
 }

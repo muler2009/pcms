@@ -1,24 +1,30 @@
-import apiSlice from "../../api/apiSlice";
+import {apiSlice} from "../../api/apiSlice";
+import { API_TAGS } from "../../../constants/tagsTypes";
 
-const userSlice = apiSlice.injectEndpoints({
+export const userSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
-        get: builder.query({
+        getUsers: builder.query({
             query: () => ({
-                url: `/users`,
+                url: 'user',
                 method: "GET"
                  
-            })
+            }) ,
+            providesTags: [API_TAGS.USER_TAG]
         }) ,
 
-        addUser: builder.mutation({
+        loginUser: builder.mutation({
             query: (data) => ({
-                url: `/users`,
+                url: `/token`,
                 method: "POST",
                 body: data
-            })
-        })
+            }),
+            invalidatesTags: [API_TAGS.USER_TAG]
+        }), 
+        
+
+
+        
     })
 })
 
-export const { useGetQuery, useAddUserMutation } = userSlice;
-export default userSlice;
+export const { useGetUsersQuery, useLoginUserMutation } = userSlice;
