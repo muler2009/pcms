@@ -2,6 +2,9 @@ import React from 'react'
 import * as Vsc from 'react-icons/vsc'
 import * as Bs from 'react-icons/bs'
 import * as Fa from 'react-icons/fa'
+import { Button } from '../../components/Reuseable/index'
+import { Link } from 'react-router-dom'
+
 
 export const LoginErrorMessage = (props) => {
   const {  loginFailedModal, setLoginFailedModal } = props
@@ -21,6 +24,11 @@ export const LoginErrorMessage = (props) => {
                         </div>
                         <div className='flex items-center space-x-2'>
                            <h1>Username or Password is empty</h1>
+                        </div>
+
+                        {/* ok button */}
+                        <div className="flex justify-end items-center ">
+                            <Button label="Ok" className="bg-teal-500 px-5" onClick={() => setLoginFailedModal(prev => !prev)} />   
                         </div>
                     </div>
                 </div>

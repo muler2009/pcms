@@ -12,6 +12,7 @@ click==8.0.3
 colorama==0.4.4
 command-not-found==0.3
 commonmark==0.9.1
+coverage==7.2.7
 cryptography==3.4.8
 cupshelpers==1.0
 dbus-python==1.2.18
@@ -22,6 +23,7 @@ distro-info===1.1build1
 Django==4.2.2
 django-cors-headers==4.1.0
 djangorestframework==3.14.0
+djangorestframework-simplejwt==5.2.2
 duplicity==0.8.21
 fasteners==0.14.1
 filelock==3.8.0
