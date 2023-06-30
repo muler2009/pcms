@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useLoginUserMutation } from "../services/features/user/userSlice";
+import { useNavigate } from 'react-router-dom'
+import { useLoginMutation } from "../services/features/auth/authApiSlice";
+import { setUsersCreditials } from "../services/features/auth/authSlice";
+
 
 
 const useLogin = () => {
 
   const dispatch = useDispatch()
-  const [loginUser, {isLoading, isSuccess}] = useLoginUserMutation()
+  const navigate = useNavigate()
+  const [login] = useLoginMutation()
   const [loginFailedModal, setLoginFailedModal] = useState(false)
+  const [errorCode, setErrorCode] = useState(null); 
 
-   const [login_attributes, set] = useState({
+   const [loginCredentials, setLoginCredentials] = useState({
       username: "",
       password: "",
    })
@@ -18,35 +23,34 @@ const useLogin = () => {
    const InputchangeHandler = (event) => {
     const type = event.target.type
     const value = type === "checkbox" ? event.target.checked : event.target.value;
-    set({
-      ...login_attributes, 
+    setLoginCredentials({
+      ...loginCredentials, 
       [event.target.name]: value, 
     })
    }
 
-  // a function to clean the innput up
    // on Login Clicked Handler
-
-   const onLoginClicked = async() => {
-      if(login_attributes.username === "" || login_attributes.password === ""){
-        setLoginFailedModal(prev => !prev)
-      }
-      else{  
-        dispatch(loginUser(login_attributes))
-        set({
-          username: "",
-          password: ""
-        })
-      }
-   }
+  const onloginClicked = async(event) => {
+    event.preventDefault()
+    try{
+      const userData = await login(loginCredentials).unwrap()
+      dispatch(setUsersCreditials({ ...userData, username: loginCredentials.username }))
+      navigate('/test_api')
+      console.log("Congra")
+    }catch(err){
+      console.log("error")
+  }
+}
 
   return {
-    login_attributes, 
-    loginFailedModal, setLoginFailedModal,
+    loginCredentials, 
+    loginFailedModal, 
+    setLoginFailedModal,
     InputchangeHandler,
-    onLoginClicked
+    onloginClicked,
+    errorCode
   };
 
 };
 
-export default useLogin;
+export default useLogin

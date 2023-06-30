@@ -8,11 +8,11 @@ import { LoginErrorMessage } from '../errors/LoginErrorMessage'
 
 const Login = () => {
 
-  const { login_attributes, InputchangeHandler, onLoginClicked, loginFailedModal, setLoginFailedModal } = useLogin()
+  const { loginCredentials, InputchangeHandler, onloginClicked, loginFailedModal, setLoginFailedModal } = useLogin()
   return (
     <div className="bg-bg-img object-cover object-center container mx-auto">
         <div className="flex flex-col justify-center items-center py-10 mt-10">
-            <form className="w-[35%] mx-auto border-[1px] px-5 py-10 rounded-lg" onSubmit={(event) => event.preventDefault()}>
+            <form className="w-[35%] mx-auto border-[1px] px-5 py-10 rounded-lg" onClick={(event) => event.preventDefault()}>
               <div className="flex justify-center items-center">
                 <img src={image} className="w-[150px]" alt="Company Logo" />
               </div>
@@ -24,15 +24,15 @@ const Login = () => {
                   name="username"
                   placeholder="username" 
                   className="input-md" 
-                  value={login_attributes.username} 
+                  value={loginCredentials.username} 
                   onChange={InputchangeHandler} 
                 />
-                <Input label="Password" type="password" id="password" name="password" value={login_attributes.password} onChange={InputchangeHandler} placeholder="Password" className="input-md" />
+                <Input label="Password" type="password" id="password" name="password" value={loginCredentials.password} onChange={InputchangeHandler} placeholder="Password" className="input-md" />
                 <Text className="text-left">Forgot Your password ?<p className="text-xs">please contact your system administrator</p></Text>
                 <IconContainer className="flex space-x-5 cursor-pointer w-[50%] mx-auto">
                   <div className="crelative">
-                    <BsArrowRightCircle size={40} color='green' onClick={onLoginClicked}/>
-                      <div class="hidden cabsolute bg-gray-900 text-white text-xs rounded py-1 px-2 whitespace-no-wrap">
+                    <BsArrowRightCircle size={40} color='green' onClick={onloginClicked}/>
+                      <div className="hidden cabsolute bg-gray-900 text-white text-xs rounded py-1 px-2 whitespace-no-wrap">
                         Login
                       </div>
                   </div>

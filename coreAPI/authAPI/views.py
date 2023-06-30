@@ -4,8 +4,13 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from .models import Users
 from .serializer import UsersSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 # Create your views here.
+
+
+class UserTokenObtainPairView(TokenObtainPairView):
+    pass
 
 
 class NewUserCreate(generics.CreateAPIView):

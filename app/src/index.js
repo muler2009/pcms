@@ -11,6 +11,8 @@ import { PageLayout } from './layout/PageLayout';
 import Login from './pages/login/Login';
 import store from './store/store';
 import Test from './pages/testpage/Test';
+import RequireAuth from './services/features/auth/RequireAuth';
+
 
 import UserRegistration from './pages/registration/UserRegistration';
 
@@ -22,6 +24,9 @@ const router = createBrowserRouter(
       <Route path='/' element={<Login />} />
       <Route path='test_api' element={<Test />} />
       <Route path='register' element={<UserRegistration />} />
+      <Route element={<RequireAuth />}>
+          <Route path="test_api" element={<h1>Comone tewe</h1>} />     
+      </Route>
 
     </Route>
   )
