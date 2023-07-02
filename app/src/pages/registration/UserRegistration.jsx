@@ -3,10 +3,8 @@ import { RegistrationForm, TestRegistrationForm } from '../../components/pageCom
 
 const UserRegistration = () => {
   return (
-    <div className="w-full flex justify-start items-start space-x-5 font-Poppins px-5">
-       <RegistrationForm />
+    <div className="w-1/3 mx-auto font-Poppins px-5">      
        <TestRegistrationForm />
-
    </div>
   )
 }

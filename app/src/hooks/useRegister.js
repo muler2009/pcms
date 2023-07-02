@@ -14,6 +14,16 @@ const useRegister = () => {
     confirm_password: ""
   })
 
+  const [validators, setValidators] = useState({
+    validate_name: false,
+    birth_date: false,
+    validate_gender: false,
+    validate_is_staff: false,
+    validate_is_active: false,
+    validate_email: false
+
+  })
+
   const registerationHandler = (event) => {
     const type = event.target.type
     

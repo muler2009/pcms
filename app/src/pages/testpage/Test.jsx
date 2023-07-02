@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 
 
 const Test = () => {
+ 
   // const { data, isLoading, isSuccess, error } = useGetUsersQuery();
 
   // return (
@@ -20,7 +22,10 @@ const Test = () => {
   //   </>
   // );
   return(
-    <h1>Test</h1>
+    <div className='flex justify-center items-center my-5'>
+      <h1 className='font-Oswald text-5xl '>You are logged in</h1>
+      
+    </div>
   )
 };
 

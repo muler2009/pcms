@@ -30,10 +30,10 @@ export const LoginErrorMessage = (props) => {
                             <Io.IoIosInformationCircle size={50} />
                             <div className="flex flex-col gap-1">
                                 <h1 className="font-Roboto text-[18px] font-semibold">Login Failed!</h1>
-                                {/* {errorCode === "missing-credentials" && ( */}
-                                    <p className="text-sm">Username or password is Incorrect, Please Try again!</p>
-            
-                                {/* )} */}
+                                    {errorCode === "empty" && ( 
+                                        <p className="text-sm">Username or password must be Filled, Please Try again!</p>
+                    
+                                    )} 
                             </div>
                            
                         </div>

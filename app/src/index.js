@@ -10,11 +10,10 @@ import {
 import { PageLayout } from './layout/PageLayout';
 import Login from './pages/login/Login';
 import store from './store/store';
-import Test from './pages/testpage/Test';
+import Welcome from './pages/testpage/Welcome';
 import RequireAuth from './services/features/auth/RequireAuth';
-
-
 import UserRegistration from './pages/registration/UserRegistration';
+
 
 {/* creating page routes */}
 const router = createBrowserRouter(
@@ -22,10 +21,10 @@ const router = createBrowserRouter(
     <Route element={<PageLayout />}>
       {/* public route */}
       <Route path='/' element={<Login />} />
-      <Route path='test_api' element={<Test />} />
+      
       <Route path='register' element={<UserRegistration />} />
       <Route element={<RequireAuth />}>
-          <Route path="test_api" element={<h1>Comone tewe</h1>} />     
+          <Route path="welcome" element={<Welcome />} />   
       </Route>
 
     </Route>
@@ -34,10 +33,8 @@ const router = createBrowserRouter(
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store={store}>
-    <React.StrictMode>
+  <Provider store={store}> 
       <RouterProvider router={router} />
-    </React.StrictMode>
   </Provider>
 
 );

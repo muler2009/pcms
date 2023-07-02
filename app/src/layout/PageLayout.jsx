@@ -5,7 +5,7 @@ import { Header, Footer } from './components'
 export const PageLayout = () => {
   return (
     <React.Fragment>
-        <Header />
+        {/* <Header /> */}
         <main className="flex-1">
             <Outlet />
         </main>

@@ -1,9 +1,26 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Registration from '../../components/pageComponents/Registration'
+import { useLogoutMutation } from '../../services/api/authApiSlice';
+import { clearAuthData } from '../../services/features/auth/authSlice';
 
 const Header = () => {
   const [register, setRegister] = useState(false)
+
+  const [logout] = useLogoutMutation()
+  const dispatch = useDispatch()
+
+  const onLogoutClicked = async() => {
+    try{
+      await logout()
+      dispatch(clearAuthData())
+      localStorage.removeItem('token')
+    }catch(error){
+      console.log(error)
+
+    }
+  }
 
   return (
     <>
@@ -19,6 +36,9 @@ const Header = () => {
                     <Link to="register">
                       <p className="text-sm font-Poppins text-[#5c727d] cursor-pointer hover:underline">Register</p>
                     </Link>
+                   
+                      <p className="text-sm font-Poppins text-[#5c727d] cursor-pointer hover:underline" onClick={onLogoutClicked}>Lougout</p>
+                    
                   </div>
               </div>
           </div>

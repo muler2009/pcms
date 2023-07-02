@@ -1,15 +1,16 @@
 import React from 'react'
 
-const InputField = ({label, id, name, type, placeholder, value, onChange}) => {
+const InputField = ({label, id, name, type, placeholder, value, onChange }) => {
   return (
     <div className="relative">
          <input 
             id={name} 
             name={name} 
             type={type} 
+          
             value={value}
             onChange={onChange}
-            className="peer h-10 font-Poppins focus:outline-none placeholder-transparent border-b-[2px] border-gray-600 border-gray-30  text-sm" 
+            className="peer h-10 font-Poppins focus:outline-none placeholder-transparent border-b-[2px] border-gray-600 border-gray-30 text-sm" 
             placeholder={placeholder} 
             
           />

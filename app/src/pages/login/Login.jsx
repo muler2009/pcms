@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useRef } from 'react'
 import {BsArrowRightCircle, BsFillQuestionOctagonFill} from 'react-icons/bs'
 import image from '../../assets/images/image.png'
 import { Input } from '../../components/Reuseable'
@@ -22,6 +22,7 @@ const Login = () => {
                   type="text" 
                   id="username"
                   name="username"
+                  required
                   placeholder="username" 
                   className="input-md" 
                   value={loginCredentials.username} 
