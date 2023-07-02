@@ -1,4 +1,4 @@
-import React, {useEffect, useRef } from 'react'
+import React, {useEffect, useRef, useState } from 'react'
 import {BsArrowRightCircle, BsFillQuestionOctagonFill} from 'react-icons/bs'
 import image from '../../assets/images/image.png'
 import { Input } from '../../components/Reuseable'
@@ -8,11 +8,14 @@ import { LoginErrorMessage } from '../errors/LoginErrorMessage'
 
 const Login = () => {
 
-  const { loginCredentials, InputchangeHandler, onloginClicked, loginFailedModal, setLoginFailedModal } = useLogin()
+  
+  const { loginCredentials, InputchangeHandler, onloginClicked, loginFailedModal, setLoginFailedModal, errorMessage } = useLogin()
   return (
-    <div className="bg-bg-img object-cover object-center container mx-auto">
+    <>
+    
+  {/* <div className="bg-bg-img object-cover object-center container mx-auto"> */}
         <div className="flex flex-col justify-center items-center py-10 mt-10">
-            <form className="w-[35%] mx-auto border-[1px] px-5 py-10 rounded-lg" onClick={(event) => event.preventDefault()}>
+            <form className=" mx-auto border-[1px] px-5 py-10 rounded-lg" onClick={(event) => event.preventDefault()}>
               <div className="flex justify-center items-center">
                 <img src={image} className="w-[150px]" alt="Company Logo" />
               </div>
@@ -50,8 +53,9 @@ const Login = () => {
               </div>            
             </form>
         </div>
-          <LoginErrorMessage setLoginFailedModal={setLoginFailedModal} loginFailedModal={loginFailedModal} />
-    </div>
+          <LoginErrorMessage setLoginFailedModal={setLoginFailedModal} loginFailedModal={loginFailedModal} errorMessage={errorMessage} />
+    {/* </div> */}
+    </>
   )
 }
 

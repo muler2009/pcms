@@ -12,7 +12,7 @@ const useLogin = () => {
 
 
   const [loginFailedModal, setLoginFailedModal] = useState(false)
-  const [errorCode, setErrorCode] = useState(null); 
+  const [errorMessage, setErrorMessage] = useState('');
 
    const [loginCredentials, setLoginCredentials] = useState({
       username: "",
@@ -39,7 +39,7 @@ const useLogin = () => {
     event.preventDefault()
     try{
       const response = await login(loginCredentials).unwrap() 
-
+    
       const { access } = response
 
       localStorage.setItem('token', access)
@@ -47,22 +47,34 @@ const useLogin = () => {
       dispatch(setAuthData({isAuthenticated: true, access}));
 
       navigate('/welcome')
+      
 
     }catch(error){
-      if (error.status === 400) {
-        setLoginFailedModal((prev) => !prev);
+      if (!error) {
+        console.log(error)
+      } else if (error.status === 400) {
+
+        setErrorMessage(error.response?.data?.error || 'Please fill the username and password'); // set error message state
+        setLoginFailedModal((prev) => !prev); // show modal
+
+      } else if (error.status === 401) {
+
+        setErrorMessage(error.response?.data?.detail || "No active account found with the given credentials"); // set error message state
+        setLoginFailedModal((prev) => !prev); 
+
       }
-  }
+    }
 }
 
 
   return {
     loginCredentials, 
     loginFailedModal, 
+    // errorCode, 
+    errorMessage,
     setLoginFailedModal,
     InputchangeHandler,
     onloginClicked,
-    errorCode
   };
 
 };

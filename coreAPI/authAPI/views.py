@@ -7,7 +7,6 @@ from .serializers import UsersSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import UserTokenObtainPairSerializer
-from django.contrib.auth.views import LogoutView
 
 
 # Create your views here.
@@ -18,25 +17,18 @@ class UserTokenObtainPairView(TokenObtainPairView):
     serializer_class = UserTokenObtainPairSerializer
 
 
-class CustomLogoutView(LogoutView):
-    def dispatch(self, request, *args, **kwargs):
-        # Call the parent dispatch method to log the user out
-        response = super().dispatch(request, *args, **kwargs)
-
-        # Get the refresh token from the request's cookies or headers
-        refresh_token = request.COOKIES.get('refresh_token') or request.headers.get(
-            'Authorization', '').split(' ')[1]
-
+class UserLogoutView(generics.CreateAPIView):
+    def create(self, request: Request, *args, **kwargs):
+        refresh_token = request.data.get('refresh_token')
         if refresh_token:
-            # Blacklist the refresh token to prevent it from being used again
-            token = RefreshToken(refresh_token)
-            token.blacklist()
-
-            # Include the refresh token in the response
-            # response.set_cookie('refresh_token', '', max_age=0)
-            # response.data = {'refresh_token': refresh_token}
-
-        return Response({'message: Loggedout successfully'})
+            try:
+                token = RefreshToken(refresh_token)
+                token.blacklist()
+                return Response({'message': 'Logout successful.'}, status=status.HTTP_200_OK)
+            except Exception as e:
+                return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({'error': 'Refresh token not provided.'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class RegisterNewUser(generics.CreateAPIView):

@@ -24,7 +24,7 @@ const baseQueryForReauthentication = async(args, api, extraOptions) => {
     let resultFromBaseQuery = await baseQuery(args, api, extraOptions) 
 
     // cheking if the token is expired
-    if(resultFromBaseQuery?.error?.originalStatus === 403) {
+    if(resultFromBaseQuery?.error?.status === 403) {
       // send a refresh to get access token
       const refreshResult = await baseQuery('api/token/refresh/', api, extraOptions)
       if(refreshResult?.data) {

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserIndex, UserTokenObtainPairView, CustomLogoutView
+from .views import UserIndex, UserTokenObtainPairView, UserLogoutView
 
 
 # setting the app name
@@ -10,7 +10,7 @@ urlpatterns = [
     path('', UserIndex.as_view(), name='index'),
     path('token/', UserTokenObtainPairView.as_view(),
          name='token_obtain_pair'),
-    path('logout/', CustomLogoutView.as_view(), name='index'),
+    path('logout/', UserLogoutView.as_view(), name='index'),
 
 
 
