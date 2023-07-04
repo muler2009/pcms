@@ -3,16 +3,11 @@ import * as Vsc from 'react-icons/vsc'
 import * as Bs from 'react-icons/bs'
 import * as Fa from 'react-icons/fa'
 import * as Io from 'react-icons/io'
-import { Button } from '../../components/Reuseable/index'
-
-
-
+import { Button } from '../../../components/Reuseable/index'
 
 export const LoginErrorMessage = (props) => {
   const {  loginFailedModal, setLoginFailedModal, errorMessage } = props
   
-  
-
     return (
         loginFailedModal && (
             <div className="bg-black bg-opacity-5 inset-0 fixed top-0 flex justify-center items-center z-50 pb-10 font-Poppins">
@@ -42,8 +37,6 @@ export const LoginErrorMessage = (props) => {
                     </div>
                 </div>
             </div>
-
         )
       )
-  
 }

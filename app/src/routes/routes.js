@@ -1,5 +1,5 @@
 import { useRoutes } from "react-router-dom";
-import Test from "../pages/testpage/Test";
+import Test from "../pages/test_page/Test";
 
 const Routes = () => {
     const routes = useRoutes([

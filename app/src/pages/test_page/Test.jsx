@@ -1,7 +1,5 @@
 import React from 'react';
-
-
-
+import { Link } from 'react-router-dom';
 const Test = () => {
  
   // const { data, isLoading, isSuccess, error } = useGetUsersQuery();
@@ -22,8 +20,9 @@ const Test = () => {
   //   </>
   // );
   return(
-    <div className='flex justify-center items-center my-5'>
+    <div className='flex flex-col justify-center items-center my-5'>
       <h1 className='font-Oswald text-5xl '>You are logged in</h1>
+      <Link to="nested_test" className="text-sm font-Poppins">Click</Link>
       
     </div>
   )

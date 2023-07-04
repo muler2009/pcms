@@ -29,7 +29,7 @@ const Header = () => {
               <div className="flex justify-between items-center">
                   <Link to='/'><h1 className="font-Oswald text-[25px] text-[#00bdff]">PCMS Project</h1></Link>
                   <div className="flex justify-center items-center space-x-5">
-                    <Link to='test_api'>
+                    <Link to="testapi">
                        <p className="text-sm font-Poppins text-[#5c727d] cursor-pointer hover:underline">testAPI</p>
                     </Link>
                     <p className="text-sm font-Poppins text-[#5c727d] cursor-pointer hover:underline">System Help</p>

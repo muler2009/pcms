@@ -8,12 +8,14 @@ import {
   Route, RouterProvider
 } from 'react-router-dom'
 import { PageLayout } from './layout/PageLayout';
-import Login from './pages/login/Login';
+
 import store from './store/store';
-import Welcome from './pages/testpage/Welcome';
+import Welcome from './pages/test_page/Welcome';
 import RequireAuth from './services/features/auth/RequireAuth';
 import UserRegistration from './pages/registration/UserRegistration';
-import Main from './pages/main/Main';
+import Main from './pages/public/main/Main';
+
+import AdminDashboardLayout from './pages/private/sys_admin/admin_layout/Dashboard';
 
 
 {/* creating page routes */}
@@ -22,10 +24,10 @@ const router = createBrowserRouter(
     <Route element={<PageLayout />}>
       {/* public route */}
       <Route path='/' element={<Main />} />
-      
       <Route path='register' element={<UserRegistration />} />
+      
       <Route element={<RequireAuth />}>
-          <Route path="welcome" element={<Welcome />} />   
+        <Route path="admin/*" element={<AdminDashboardLayout />} />        
       </Route>
 
     </Route>
