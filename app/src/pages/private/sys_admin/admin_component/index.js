@@ -1,13 +1,13 @@
-import MainDashboard from "../admin_pages/MainDashboard";
 import SideBar from "./SideBar";
 import Sidemenu from "./Sidemenu";
 import TopNavBar from "./TopNavBar";
+import AdminProfile from "./AdminProfile";
 
 
 export {
-    MainDashboard,
     SideBar,
     Sidemenu,
     TopNavBar,
+    AdminProfile
     
 }

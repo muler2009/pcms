@@ -5,7 +5,7 @@ import useLogout from '../../../../hooks/useLogout'
 import { InnerContainer, OuterContainer } from '../../../../assets/css/Container'
 import { account, sidebar_link } from '../constants/sidebar'
 import { Link } from 'react-router-dom'
-import {Sidemenu} from '../admin_component'
+import { Sidemenu } from '../admin_component'
 
 
 const SideBar = () => {
@@ -63,6 +63,8 @@ const SideBar = () => {
                 
             
         </InnerContainer>
+
+        
     </OuterContainer>
   )
 }

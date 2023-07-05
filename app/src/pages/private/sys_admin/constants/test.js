@@ -1,3 +1,5 @@
+import { AllNotification, UnreadNotification } from "./Contents";
+
 export const MODULE_COLUMN = [
     { Header: 'Name', accessor: 'name' },
     { Header: 'Age', accessor: 'age' },
@@ -10,3 +12,9 @@ export const data = [
     { name: 'Jane', age: 25, city: 'Los Angeles' },
     { name: 'Bob', age: 40, city: 'Chicago' },
   ];
+
+export const notification = [
+    { label: 'Unread', content: <UnreadNotification /> },
+    { label: 'All Notification', content: <AllNotification /> },
+    
+]

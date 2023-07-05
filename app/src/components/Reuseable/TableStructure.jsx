@@ -66,7 +66,7 @@ const TableStructure = ({ columns, data, useAction }) => {
       
       {/* displaying table */}
       <OuterContainer>
-        <table className={`table table-sm table-striped text-left mb-5 text-[14px] px-2`} {...getTableProps()} >
+        <table className={`table table-sm table-striped text-left mb-5 text-[14px] px-2 bg-white`} {...getTableProps()} >
           <thead className="capitalize font-normal">
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
