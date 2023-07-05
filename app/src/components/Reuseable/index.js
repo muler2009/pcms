@@ -6,6 +6,9 @@ import SelectInput from "./SelectInput";
 import InputU from "./InputU";
 import DatePickerComponent from "./DatePicker";
 import CheckBok from "./CheckBok";
+import TableStructure from "./TableStructure";
+import Search from "./Search";
+import ShowDataEntries from "./ShowDataEntries";
 
 export {
     Input,
@@ -16,6 +19,9 @@ export {
     InputU,
     DatePickerComponent,
     CheckBok,
+    TableStructure,
+    ShowDataEntries,
+    Search,
 
 
 

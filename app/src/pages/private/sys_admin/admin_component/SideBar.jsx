@@ -5,7 +5,7 @@ import useLogout from '../../../../hooks/useLogout'
 import { InnerContainer, OuterContainer } from '../../../../assets/css/Container'
 import { account, sidebar_link } from '../constants/sidebar'
 import { Link } from 'react-router-dom'
-import { Sidemenu } from './Sidemenu'
+import {Sidemenu} from '../admin_component'
 
 
 const SideBar = () => {
@@ -19,20 +19,13 @@ const SideBar = () => {
             <div className="py-5 my-5">
                 <div className="flex justify-center items-center">
                     <div className="w-24 h-24 flex justify-center items-center">
-                        <Fa.FaUser size={50} className={`${controller ? 'flex justify-center cursor-pointer' : 'block cursor-pointer' }`} onClick={()=>setController(prev => ! prev)}   />
+                        <Fa.FaUser size={50} className={`${controller ? 'flex cursor-pointer' : 'block cursor-pointer mx-auto'}`} onClick={()=>setController(prev => ! prev)}   />
                     </div>
                     <div className={`flex flex-col ${!controller && 'opacity-0 translate-x-28 overflow-hidden'}`}>
                         <h1 className="font-bold text-[25px]">PCMS <span className="text-[#00bfdd]">ProV</span></h1>
                         <p className="text-[#c4c0c0] text-sm">Dashboard</p>
                     </div>
                 </div>  
-
-
-                {/* <Fa.FaBars 
-                    className={`flex justify-center items-center ${!controller ? 'flex cursor-pointer' : 'block cursor-pointer' } `}
-                    onClick={()=>setController(prev => ! prev)}  
-                    size={20}
-                /> */}
             </div>
 
             <div className="relative left-0 right-10 border-b-[1px] py-1 mx-10 mb-5">
@@ -48,18 +41,26 @@ const SideBar = () => {
 
             <div className="relative left-0 right-10 border-b-[1px] py-1 pt-12 mx-10 mb-5">
                 <h1 className="text-sm font-semibold">Account</h1>
+
             </div>
+            <div className="flex flex-col">
 
             {
                 account?.map((account, index) => {
                     return(
-                        <div className={`flex items-center justify-start space-x-2 py-3 px-3 `} key={index}>
-                            <div size={20}>{account.icon}</div>
-                            <h2 className={`duration-500 font-Poppins text-sm ${!controller && 'opacity-0 translate-x-28 overflow-hidden'}`}>{account.label}</h2>
+                        <div className="relative px-3" key={index}>
+                            <Link className={`flex items-center justify-start space-x-2 py-3 px-5`} to={account.path} >
+                                <div size={20}>{account.icon}</div>
+                                <div className={`duration-500 font-Poppins text-sm ${!controller && 'opacity-0 translate-x-28 overflow-hidden'}`}>{account.label}</div>
+                            </Link>
                         </div>
                     )
                 })
             }
+            </div>
+
+
+                
             
         </InnerContainer>
     </OuterContainer>

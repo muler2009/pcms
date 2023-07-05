@@ -8,25 +8,25 @@ import * as IoIcons from 'react-icons/io5';
 
 export const sidebar_link = [
     { 
-        path: "register", 
+        path: "/admin", 
         label: "Dashboard", 
         icon: <AiIcons.AiOutlineDashboard /> },
     { 
-        path: "user", 
+       
         label: "Manage User", 
         icon: <FaIcons.FaUserCog />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,    
         submenu: [
             {
-                path: 'register',
+                path: 'add_user',
                 label: 'New User',
                 icon: <GrIcons.GrNotes />,
     
             },
             {
                 path: 'edit_user',
-                label: 'Edite User',
+                label: 'Edit User',
                 icon: <GrIcons.GrNotes />,
     
             },

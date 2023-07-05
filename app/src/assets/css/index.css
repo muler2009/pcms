@@ -34,26 +34,71 @@
       display: block;
       position: absolute;
       bottom: -10px;
-      left: 50%;
-      
+      left: 50%; 
     }
-    .btn {
-        @apply flex items-center justify-center p-4;
-      }
-      .btn-sm {
-        @apply p-2 h-[40px] text-sm font-Poppins font-normal;
-      }
-      .btn-text {
-        @apply text-center font-Quicksand text-[16px] font-normal text-black;
-      }
-    
-      .input-sm {
-        @apply px-2 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition
-                    ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none;
-      }
-    
-      .input-md {
-        @apply px-2 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition
-        ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:outline-none focus:border-green-900;
-      }
+    .btn { @apply flex items-center justify-center p-4 }
+    .btn-sm { @apply p-2 h-[40px] text-sm font-Poppins font-normal }
+    .btn-text { @apply text-center font-Quicksand text-[16px] font-normal text-black }
+    .input-sm { @apply px-2 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition
+                    ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none }
+    .input-md { @apply px-2 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition
+        ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:outline-none focus:border-green-900 }
+
+    /* table css */
+    .table { @apply w-full mt-4 border-zinc-500 font-Poppins text-[14px] cursor-pointer text-sm } 
+    .table-border { @apply w-full mt-4 border-zinc-500 font-Poppins text-[14px] cursor-pointer text-sm text-left }
+    .table-border > thead { 
+      @apply border-t-[1px] border-b-[1px];
+    }
+    .table-border > tbody > tr > td { @apply border-[1px] }
+    .table > thead {
+      @apply border-t-[1px] border-b-[1px];
+    }
+    .table > thead > th {
+      @apply py-3 px-2 font-normal;
+    }
+    .table > tbody > td {
+      @apply py-3 px-2 font-normal;
+    }
+    .table > tbody > tr > td {
+      @apply px-6;
+    }
+    .table > tbody > tr > td > h1 {
+      @apply font-normal bg-green-500 px-1 py-2 text-white;
+    }
+  
+    .table > :not(caption) > * > * {
+      padding: 0.5rem 0.5rem;
+      background-color: var(--bs-table-bg);
+      border-bottom-width: 1px;
+      box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+    }
+    .table > tbody > th,
+    .table > tbody td {
+      @apply font-normal;
+    }
+    .table > thead > tr > th {
+      @apply font-normal py-3 border-[1px] text-center;
+    }
+    .table > tbody {
+      @apply align-baseline;
+    }
+    .table > thead {
+      @apply align-bottom;
+    }
+    .table-group-divider {
+      @apply border-t-2 border-solid border-inherit;
+    }
+    .table-sm {
+      @apply p-2;
+    }
+  
+    .table-striped > tbody > tr:nth-of-type(odd) {
+      @apply bg-[#ddd];
+    }
+    .table-striped > tbody > tr:nth-of-type(even) {
+      @apply bg-white;
+    }
+
+
   }
