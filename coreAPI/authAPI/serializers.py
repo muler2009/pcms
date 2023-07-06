@@ -5,12 +5,12 @@ from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 # from rest_framework_simplejwt.views import TokenObtainPairView
 
-Users = get_user_model()
+UserAuthentiacation = get_user_model()
 
 
 class UsersSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Users
+        model = UserAuthentiacation
         fields = '__all__'
 
 
@@ -29,7 +29,7 @@ class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 class RegistrationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Users
+        model = UserAuthentiacation
         fields = '__all__'
         extra_kwargs = {
             'password': {'write_only': True}

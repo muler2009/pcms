@@ -50,7 +50,7 @@
     .table-border > thead { 
       @apply border-t-[1px] border-b-[1px];
     }
-    .table-border > tbody > tr > td { @apply border-[1px] }
+    .table-border > tbody > tr > td { @apply border-[1px] py-0 }
     .table > thead {
       @apply border-t-[1px] border-b-[1px];
     }

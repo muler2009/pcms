@@ -8,6 +8,7 @@ import Users from './Users'
 import * as MdIcons from 'react-icons/md'
 import * as BsIcons from 'react-icons/bs'
 import { AdminProfile } from '../admin_component'
+import { ResultChart, SystemUsage } from '../constants/Contents'
 
 
 const MainDashboard = () => {
@@ -15,13 +16,15 @@ const MainDashboard = () => {
     <OuterContainer className="relative w-full p-2">
       <InnerContainer className="flex space-x-5">
         <InnerContainer className="w-3/4 flex flex-col">
-          <div className="flex justify-between ">
-            <h1>Left section</h1>
-            <h1>Right section</h1>
+          <div className="flex justify-between space-x-2">
+            <ResultChart />
+            <SystemUsage />
             
           </div>
-          
-          <Users />
+          <h1 className="my-1.5 font-Poppins uppercase text-[25px] font-bold">User 
+            <span className="text-[#00bfdd] ml-2">Accounts</span>
+          </h1>
+          <Users className="bg-white" />
         </InnerContainer>
         <InnerContainer className="w-1/4">
           <AdminProfile />

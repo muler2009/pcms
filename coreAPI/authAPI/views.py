@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics, permissions, status
 from rest_framework.request import Request
 from rest_framework.response import Response
-from .models import Users
+from .models import UserAuthentiacation
 from .serializers import UsersSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -49,5 +49,5 @@ class RegisterNewUser(generics.CreateAPIView):
 
 
 class UserIndex(generics.ListAPIView):
-    queryset = Users.objects.all()
+    queryset = UserAuthentiacation.objects.all()
     serializer_class = UsersSerializer

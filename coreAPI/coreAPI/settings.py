@@ -122,7 +122,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # setting the custom authenication Model for the system
-AUTH_USER_MODEL = 'authAPI.Users'
+AUTH_USER_MODEL = 'authAPI.UserAuthentiacation'
 
 # Authentication and Permission framworks used for the project
 REST_FRAMEWORK = {
