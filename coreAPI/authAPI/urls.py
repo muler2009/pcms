@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserIndex, UserTokenObtainPairView, UserLogoutView
+from .views import UserTokenObtainPairView, UserLogoutView
 
 
 # setting the app name
@@ -7,7 +7,7 @@ from .views import UserIndex, UserTokenObtainPairView, UserLogoutView
 app_name = 'authAPI'
 
 urlpatterns = [
-    path('', UserIndex.as_view(), name='index'),
+    # path('', UserIndex.as_view(), name='index'),
     path('token/', UserTokenObtainPairView.as_view(),
          name='token_obtain_pair'),
     path('logout/', UserLogoutView.as_view(), name='index'),

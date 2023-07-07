@@ -1,7 +1,7 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import { setAuthData, clearAuthData } from '../features/auth/authSlice';
-import { BASE_URL } from '../../constants/config';
-import { API_TAGS } from '../../constants/tagsTypes';
+import { BASE_URL } from '../../config/config';
+import { API_TAGS } from '../../config/tagsTypes';
 
 const baseQuery = fetchBaseQuery({
       baseUrl: BASE_URL,

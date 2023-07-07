@@ -37,8 +37,7 @@ class UserAuthentiacation(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return f'{self.username}'
 
-
-# Create your models here.
+# User profile information model
 
 
 class UsersProfile(models.Model):
@@ -57,8 +56,6 @@ class UsersProfile(models.Model):
         verbose_name="Email address", max_length=50, unique=True, blank=False)
     user = models.OneToOneField(
         'UserAuthentiacation', on_delete=models.CASCADE, related_name='info')
-    is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["first_name"]

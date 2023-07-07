@@ -88,8 +88,8 @@ export const ResultChart = () => {
       
       return(
         <ResponsiveContainer width="100%" >
-            <div className="text-sm py-10 bg-[#ffffff] shadow-sm">
-                <LineChart width={600} height={250} data={data}                            
+            <div className="text-sm py-10 bg-[#ffffff] shadow-sm -z-0">
+                <LineChart width={550} height={250} data={data}                            
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
@@ -101,7 +101,7 @@ export const ResultChart = () => {
                     <Label value="Chart Title" position="top" fill="#f00" />
                 </LineChart>
             </div>
-    </ResponsiveContainer>
+        </ResponsiveContainer>
       )
 }
 
@@ -142,6 +142,7 @@ export const SystemUsage = () => {
       ]
 
     return(
+      <ResponsiveContainer width="100%">
         <div className="text-sm py-10 bg-[#ffffff] shadow-sm">
             <AreaChart width={550} height={250} data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                 <defs>
@@ -163,6 +164,7 @@ export const SystemUsage = () => {
                 
             </AreaChart>
         </div>
+      </ResponsiveContainer>
 
     )
 }

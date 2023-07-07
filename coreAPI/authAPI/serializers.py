@@ -1,6 +1,6 @@
 from rest_framework import serializers, status
 from rest_framework.response import Response
-# from .models import Users
+from .models import UsersProfile
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 # from rest_framework_simplejwt.views import TokenObtainPairView
@@ -26,11 +26,10 @@ class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         return token
 
+# user registration serializer form the front end
 
-class RegistrationSerializer(serializers.ModelSerializer):
+
+class NewUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserAuthentiacation
+        model = UsersProfile
         fields = '__all__'
-        extra_kwargs = {
-            'password': {'write_only': True}
-        }

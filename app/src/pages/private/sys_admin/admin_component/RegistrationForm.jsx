@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { InputField, SelectInput, DatePickerComponent, CheckBok, Button } from '../Reuseable'
+import { InputField, SelectInput, DatePickerComponent, CheckBok, Button } from '../../../../components/Reuseable'
 import * as Sl from 'react-icons/sl'
 import * as Fa from 'react-icons/fa'
-import { gender } from '../../pages/private/sys_admin/constants/department'
-import useRegister from '../../hooks/useRegister'
+import { gender } from '../constants/department'
+import useRegister from '../../../../hooks/useRegister'
 
-const TestRegistrationForm = () => {
+const RegistrationForm = () => {
 
     const refs = useRef()
     const EMAIL_VALIDATOR_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -18,7 +18,7 @@ const TestRegistrationForm = () => {
       }, [register.email]);
 
   return (
-    <div className="bg-white my-10 border-[1px] border-[#ddd]">
+    <div className="bg-white my-10 border-[1px] border-[#ddd] px-1 mx-1">
         <div className="py-5 flex justify-center items-center">
             <h1 className="font-Oswald text-[25px] uppercase">User Test Registration</h1>
         </div>
@@ -47,7 +47,6 @@ const TestRegistrationForm = () => {
                         <CheckBok label="Staff" id="staff" description="Staff User" name="is_staff" value={register.is_staff} onChange={registerationHandler} />
                         <CheckBok label="Active" id="is_active" description="Is the user active?" name="is_active" value={register.is_active} onChange={registerationHandler} />
                     </div>
-
                     <div className="w-1/2">
                         <div className={`${validate_email ? "ml-2 text-green-700 text-xs" : 'hidden'}`}>
                             <p>Done</p>
@@ -62,8 +61,6 @@ const TestRegistrationForm = () => {
                         />
                         <p className="text-xs text-gray-400">Ex: email@domain.com</p>
                     </div> 
-
-
                 </div>
 
                 <InputField label="Username" id="username" type="text" placeholder="Username" name="username" value={register.username} onChange={registerationHandler} />
@@ -84,4 +81,4 @@ const TestRegistrationForm = () => {
   )
 }
 
-export default TestRegistrationForm
+export default RegistrationForm;

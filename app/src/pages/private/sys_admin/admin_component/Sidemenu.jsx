@@ -14,7 +14,7 @@ const Sidemenu = (props) => {
                   <Link 
                     to={sideParent.path} 
                     onClick={sideParent.submenu && showSubnav} 
-                    className={`flex justify-between px-5 py-0.5 ${!controller && 'hover:bg-inherit hover:border-none focus:border-none'} hover:bg-[#e6e6e6]`}> 
+                    className={`flex justify-between px-5 py-0.5 ${!controller && 'hover:bg-inherit hover:border-none focus:border-none'} hover:bg-[#EEE] hover:text-[#006] focus:bg-[#eee] focus:border-r-[5px] focus:border-green-700`}> 
                         <div className={`flex items-center justify-center space-x-2 py-3 px-3 `}>
                           <div size={20}>{sideParent.icon}</div>
                           <h2 className={`duration-500 font-Poppins text-sm ${!controller && 'opacity-0 translate-x-28 overflow-hidden'}`}>{sideParent.label}</h2>

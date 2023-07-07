@@ -39,34 +39,7 @@ const Users = () => {
           );
         },
       },
-      // {
-      //   id: 2,
-      //   Header: "Upgrade",
-      //   Cell: ({ row }) => {
-      //     return (
-      //       <div className="flex justify-center items-center space-x-2">
-      //         {row.values.payment === "Free" ? (
-      //           <h1 className={``}> --- </h1>
-      //         ) : row.values.payment === "Pending" ? (
-      //           <h1 className={``}> Pending </h1>
-      //         ) : row.values.payment === "Paid" ? (
-      //           <h1 className={``}> --- </h1>
-      //         ) : (
-      //           <div
-      //             className={`text-sm flex items-center `}
-      //             onClick={() => getDataSelected(row.values)}
-      //           >
-      //             <h1
-      //               className={`text-blue-700 font-Roboto text-sm hover:underline hover:text-blue-600`}
-      //             >
-      //               Upgrade
-      //             </h1>
-      //           </div>
-      //         )}
-      //       </div>
-      //     );
-      //   },
-      // },
+     
     ]);
   };
   return (

@@ -3,14 +3,13 @@ from rest_framework import generics, permissions, status
 from rest_framework.request import Request
 from rest_framework.response import Response
 from .models import UserAuthentiacation
-from .serializers import UsersSerializer
+
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import UserTokenObtainPairSerializer
+from .serializers import UserTokenObtainPairSerializer, NewUserSerializer
 
 
 # Create your views here.
-
 
 class UserTokenObtainPairView(TokenObtainPairView):
     permission_classes = [permissions.AllowAny]
@@ -31,9 +30,10 @@ class UserLogoutView(generics.CreateAPIView):
             return Response({'error': 'Refresh token not provided.'}, status=status.HTTP_400_BAD_REQUEST)
 
 
+# Registering the New user
 class RegisterNewUser(generics.CreateAPIView):
-    permission_classes = [permissions.AllowAny]
-    serializer_class = UsersSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = NewUserSerializer
 
     def create(self, request: Request, *args, **kwargs):
         # creating the new serializer instastance with the incoming data
@@ -46,8 +46,3 @@ class RegisterNewUser(generics.CreateAPIView):
                 return Response(status=status.HTTP_201_CREATED)
             # Response if there is some errors
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class UserIndex(generics.ListAPIView):
-    queryset = UserAuthentiacation.objects.all()
-    serializer_class = UsersSerializer

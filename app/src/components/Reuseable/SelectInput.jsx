@@ -1,5 +1,5 @@
 import React from 'react'
-import { department } from '../../constants/data/department'
+import { department } from '../../pages/private/sys_admin/constants/department'
 
 const SelectInput = ({label, id, defaultValue, name, type, placeholder, htmlFor, onChange, data}) => {
   return (

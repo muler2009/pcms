@@ -1,4 +1,4 @@
-import { API_TAGS } from "../../constants/tagsTypes";
+import { API_TAGS } from "../../config/tagsTypes";
 import { apiSlice } from "./apiSlice";
 
 export const authApiSlice = apiSlice.injectEndpoints({

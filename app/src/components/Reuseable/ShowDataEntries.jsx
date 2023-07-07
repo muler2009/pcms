@@ -4,27 +4,24 @@ const ShowDataEntries = (props) => {
   const { pageSize, setPageSize } = props;
   return (
     <React.Fragment>
-      <div className={`flex md:flex`}>
-        <div className="flex flex-1 ss:space-x-2">
-          <h1 className="flex items-center justify-start font-Poppins text-sm">
-            Show Entries
-          </h1>
+        <div className="flex flex-col">
+          <h1 className="font-Roboto py-1">Result</h1>
           <div className={`flex justify-start`}>
             <select
-              className="select-sm"
+              className="w-full select-sm py-1 px-6 font-Roboto font-semibold text-md"
               type="number"
               value={pageSize}
               onChange={(event) => setPageSize(Number(event.target.value))}
             >
               {[2, 5, 10, 15, 20].map((pageSize) => (
-                <option key={pageSize} value={pageSize}>
+                <option key={pageSize} value={pageSize} className="py-1">
                   {`${pageSize}`}
                 </option>
               ))}
             </select>
           </div>
         </div>
-      </div>
+      
     </React.Fragment>
   );
 };

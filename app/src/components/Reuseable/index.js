@@ -9,6 +9,7 @@ import CheckBok from "./CheckBok";
 import TableStructure from "./TableStructure";
 import Search from "./Search";
 import ShowDataEntries from "./ShowDataEntries";
+import TableStructureT from "./TableStructureT";
 
 export {
     Input,
@@ -22,6 +23,7 @@ export {
     TableStructure,
     ShowDataEntries,
     Search,
+    TableStructureT,
 
 
 

@@ -6,7 +6,7 @@ import * as Bi from 'react-icons/bi'
 import { InputField, Input, SelectInput } from '../Reuseable'
 import image from '../../assets/images/image.png'
 import IconInput from '../Reuseable/IconInput'
-import { department, gender } from '../../constants/data/department'
+import { department, gender } from '../../pages/private/sys_admin/constants/department'
 
 
 const Registration = (props) => {

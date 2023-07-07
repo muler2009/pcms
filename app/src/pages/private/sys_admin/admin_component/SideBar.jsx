@@ -32,39 +32,31 @@ const SideBar = () => {
                 <h1 className="uppercase text-sm font-semibold">MAIN MENU</h1>
             </div>
 
-            {
-                sidebar_link?.map((sideParent, index) => {
-                    return <Sidemenu key={index} sideParent={sideParent} controller={controller} />
-                })
-            }
+                {
+                    sidebar_link?.map((sideParent, index) => {
+                        return <Sidemenu key={index} sideParent={sideParent} controller={controller} />
+                    })
+                }
                 
 
             <div className="relative left-0 right-10 border-b-[1px] py-1 pt-12 mx-10 mb-5">
                 <h1 className="text-sm font-semibold">Account</h1>
-
             </div>
             <div className="flex flex-col">
-
-            {
-                account?.map((account, index) => {
-                    return(
-                        <div className="relative px-3" key={index}>
-                            <Link className={`flex items-center justify-start space-x-2 py-3 px-5`} to={account.path} >
-                                <div size={20}>{account.icon}</div>
-                                <div className={`duration-500 font-Poppins text-sm ${!controller && 'opacity-0 translate-x-28 overflow-hidden'}`}>{account.label}</div>
-                            </Link>
-                        </div>
-                    )
-                })
-            }
-            </div>
-
-
-                
-            
+                {
+                    account?.map((account, index) => {
+                        return(
+                            <div className="relative px-3" key={index}>
+                                <Link className={`flex items-center justify-start space-x-2 py-3 px-5`} to={account.path} >
+                                    <div size={20}>{account.icon}</div>
+                                    <div className={`duration-500 font-Poppins text-sm ${!controller && 'opacity-0 translate-x-28 overflow-hidden'}`}>{account.label}</div>
+                                </Link>
+                            </div>
+                        )
+                    })
+                }
+            </div>           
         </InnerContainer>
-
-        
     </OuterContainer>
   )
 }

@@ -44,6 +44,10 @@
     .input-md { @apply px-2 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition
         ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:outline-none focus:border-green-900 }
 
+    .select-sm {
+      @apply w-full block px-4 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none;
+    }
+
     /* table css */
     .table { @apply w-full mt-4 border-zinc-500 font-Poppins text-[14px] cursor-pointer text-sm } 
     .table-border { @apply w-full mt-4 border-zinc-500 font-Poppins text-[14px] cursor-pointer text-sm text-left }
@@ -100,5 +104,14 @@
       @apply bg-white;
     }
 
+    
+    /* .dropdown {
+      @apply absolute top-[70px] right-6 w-[200px] rounded-sm bg-black cursor-pointer shadow-md z-10
+      before:content-[''] before:absolute before:-top-4 before:right-3 before:w-[25px] before:h-[25px] before:bg-white before:transform before:rotate-45 before:border-l-[1px] 
+      before:border-t-[1px];
+    } */
+
+    
+   
 
   }
