@@ -6,10 +6,13 @@ import { Link } from 'react-router-dom'
 import * as AiIcons from 'react-icons/ai'
 import * as GrIcons from 'react-icons/gr'
 import {LoginErrorMessage} from '../../../common/errors/LoginErrorMessage'
+import {RegistrationForm} from '../admin_component'
 
 
 const UserTopNavigation = () => {
    
+  const [modalTrigger, setModalTrigger] = useState(false)
+
   // creating an array of state for handling dropdown 
   const [drop, setDrop] = useState(userlink.map(() => false));
  
@@ -27,7 +30,6 @@ const UserTopNavigation = () => {
     }
   }
   
-
   const handleDropdown = (index) => {
     setDrop((prev) => {
       const newStates = [...prev];
@@ -43,17 +45,17 @@ const UserTopNavigation = () => {
 
    const renderTopbar = () => {
      return userlink.map((item, index) => {
-       if (item.dropdown) {
-         return (
-           <div key={index} className="relative">
-             <div className="flex items-center justify-between space-x-3 px-4 py-0 text-sm font-medium text-black cursor-pointer" 
-                  onClick={() => OpenOneandCloseOtherDropdown(index) }
-                >
-               <span>{item.label}</span>
-               { drop[index] ? <AiIcons.AiFillCaretUp /> : <AiIcons.AiFillCaretDown /> }
-             </div>
-             <div className={`absolute z-50 mt-3.5 ml-4 px-0.5 py-1 bg-[#EEE] border-[2px] border-t-0 border-black ${drop[index] ? 'block' : 'hidden'}`} >
-               <div className="w-[200px]">
+        if (item.dropdown) {
+          return (
+            <div key={index} className="relative">
+              <div className="flex items-center justify-between space-x-3 px-4 py-0 text-sm font-medium text-black cursor-pointer" 
+                  onClick={() => OpenOneandCloseOtherDropdown(index)} >
+                  <span>{item.label}</span>
+
+                  { drop[index] ? <AiIcons.AiFillCaretUp /> : <AiIcons.AiFillCaretDown /> }
+              </div>
+              <div className={`absolute z-50 mt-3.5 ml-4 px-0.5 py-1 bg-[#EEE] border-[2px] border-t-0 border-black ${drop[index] ? 'block' : 'hidden'}`} >
+                <div className="w-[200px]">
                   {
                     item?.subItems?.map((submenu, index) => 
                         submenu.modal 
@@ -61,11 +63,11 @@ const UserTopNavigation = () => {
                             <Link 
                               key={index}  
                               className="block px-4 py-2 text-xs text-gray-700 hover:bg-[#006] hover:text-[#fff]"
-                              onClick={() =>{ setDrop(userlink.map(() => false));  setLoginFailedModal(prev => !prev)}}
+                              onClick={() =>{ setDrop(userlink.map(() => false));  setModalTrigger(prev => !prev)}}
                             >
                               {submenu.label}
                             </Link>
-                        ): (
+                        ) : (
                           <Link 
                             key={index}  
                             className="block px-4 py-2 text-xs text-gray-700 hover:bg-[#006] hover:text-[#fff]"
@@ -74,24 +76,20 @@ const UserTopNavigation = () => {
                           >
                           {submenu.label}
                           </Link>
-                        )
-                    
-                    
-                     
+                        )                   
                     )
                   }
-               </div>
-               
-             </div>
-           </div>
-         );
+                </div>    
+              </div>
+            </div>
+         )
        } else {
          return (
-           <div key={index} className="text-sm"> 
-             <Link to={item.path} className="">
-              {item.label}
-             </Link>
-           </div>
+            <div key={index} className="text-sm"> 
+              <Link to={item.path} className="">
+                {item.label}
+              </Link>
+            </div>
          );
        }
      });
@@ -107,7 +105,7 @@ const UserTopNavigation = () => {
           </InnerContainer>        
       </OuterContainer>
 
-      <LoginErrorMessage setLoginFailedModal={setLoginFailedModal} loginFailedModal={loginFailedModal} />
+      <RegistrationForm setModalTrigger={setModalTrigger} modalTrigger={modalTrigger} />
       </>
   )
 }
