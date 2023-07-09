@@ -1,7 +1,7 @@
 import React from 'react'
 import { department } from '../../pages/private/sys_admin/constants/department'
 
-const SelectInput = ({label, id, defaultValue, name, type, placeholder, htmlFor, onChange, data}) => {
+export const SelectInputField = ({label, id, defaultValue, name, type, placeholder, htmlFor, onChange, data}) => {
   return (
     <div className="relative">
          <select 
@@ -28,4 +28,31 @@ const SelectInput = ({label, id, defaultValue, name, type, placeholder, htmlFor,
   )
 }
 
-export default SelectInput
+
+export const SelectInput = ({label, id, name, type, placeholder, htmlFor, onChange, data, value}) => {
+  return (
+    <div className="font-Poppins flex flex-col gap-2 text-sm">
+        <label htmlFor={name} className="text-[15px]">{label}</label>
+
+        <select 
+          id={id} 
+          name={name} 
+          type={type} 
+          className="select-sm" 
+          placeholder={placeholder}
+          data={data}
+          value={value}
+          onChange={onChange} >
+          <option className="text-sm text-black">--Select One --</option>
+              {
+                  data?.map((data, index) =>(
+                          <option key={data.label} value={data.label} >
+                              {data.label}
+                          </option>
+                      ))
+              }
+        </select>
+    </div>
+  )
+}
+

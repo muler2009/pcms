@@ -12,6 +12,8 @@ SECRET_KEY = 'django-insecure-n!t5r2^crqua6gn-q5+z6seil$^$ani$neorwqqjysdg5s+$9u
 DEBUG = True
 # Application definition
 
+APPEND_SLASH = False
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -185,4 +187,8 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 
+
+
 }
+
+JWT_AUTH_COOKIE = 'token'

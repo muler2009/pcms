@@ -10,6 +10,7 @@ export const userlink = [
       subItems: [
         { label: "Create User", modal: true },
         { label: "Remove User", path: "remove", modal: false },
+        { label: "Generate username", path: "generate", modal: false },
       ],
     },
     { label: "Access control", path: 'access_control', icon: <MdIcons.MdAnnouncement />, dropdown: false },

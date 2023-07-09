@@ -1,17 +1,22 @@
 import {useState} from 'react'
+import { useAddUsersMutation } from '../services/features/user/userApiSlice'
+
 
 const useRegister = () => {
+
+  const [addUsers] = useAddUsersMutation()
+
   const [register, set] = useState({
     first_name: "",
     last_name: "",
-    birth_date: "",
+    date_of_birth: "",
     gender: "",
-    is_staff: false,
-    is_active: false,
     email: "",
-    username: "",
-    password: "",
-    confirm_password: ""
+    // is_staff: false,
+    // is_active: false,
+    // username: "",
+    // password: "",
+    // confirm_password: ""
   })
 
   const [validators, setValidators] = useState({
@@ -35,23 +40,36 @@ const useRegister = () => {
   }
 
   const handleDateChange = (date) => {
-    set({ ...register, birth_date: date });
+    set({ ...register, date_of_birth: date });
   };
 
   const registerationCleanFields = () => {
     set({
       first_name: "",
       last_name: "",
-      birth_date: "",
+      date_of_birth: "",
       gender: "",
-      is_staff: false,
-      is_active: false,
       email: "",
-      username: "",
-      password: "",
-      confirm_password: ""
     })
   }
+  
+  const onRegisterClicked = async (event) => {
+    
+    try {
+      const registerData = {
+        ...register,
+        date_of_birth: register.date_of_birth.toISOString().slice(0, 10),
+      };
+      const response = await addUsers(registerData).unwrap(); // Call addUser function
+      const data = response.data; // Extract the data from the response
+      if (response.status === 201) {
+        console.log('Congratulations, data submitted successfully');
+      }
+    } catch (error) {
+      console.log(error.status);
+    }
+  };
+  
 
 
   return{
@@ -59,7 +77,8 @@ const useRegister = () => {
     set,
     registerationHandler,
     registerationCleanFields,
-    handleDateChange
+    handleDateChange,
+    onRegisterClicked,
   }
 }
 

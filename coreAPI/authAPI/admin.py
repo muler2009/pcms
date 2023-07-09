@@ -1,28 +1,25 @@
 from django.contrib import admin
-from .models import UserAuthentiacation
+from .models import UserAuthentiacation, UsersProfile
 from django.contrib.auth.admin import UserAdmin
 
 
 # Register your models here.
 
 class UserAuthenticationAdminConfig(UserAdmin):
-    # ordering = ('first_name',)
-    # search_fields = ('email', 'username', 'user_role')
     list_display = ('email', 'username', 'user_role',
                     'is_staff', 'is_superuser')
-
-    # fieldsets = (
-    #     (None, {'fields': ('email', 'username', 'user_role',)}),
-    #     ('Permissions', {'fields': ('is_staff', 'is_active',)}),
-    # )
-
-    # When adding Users It would appear as
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'username', 'user_role', 'password1', 'password2', 'is_staff', 'is_active')}
-         ),
+            'fields': ('email', 'username', 'user_role', 'password1', 'password2', 'is_staff', 'is_active')
+        }),
     )
 
 
 admin.site.register(UserAuthentiacation, UserAuthenticationAdminConfig)
+
+
+@admin.register(UsersProfile)
+class UserProfileAdminConfig(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name',
+                    'date_of_birth', 'gender', 'email')

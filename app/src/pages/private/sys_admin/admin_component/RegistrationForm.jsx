@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { InputField, SelectInput, DatePickerComponent, CheckBok, Button } from '../../../../components/Reuseable'
+import { InputField, SelectInput, DatePickComponent, CheckBok, Button, Input } from '../../../../components/Reuseable'
 import * as Sl from 'react-icons/sl'
 import * as Fa from 'react-icons/fa'
 import * as VscIcons from 'react-icons/vsc'
@@ -12,7 +12,7 @@ const RegistrationForm = ({modalTrigger, setModalTrigger}) => {
     const refs = useRef()
     const EMAIL_VALIDATOR_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-    const { register, registerationHandler, registerationCleanFields, handleDateChange } = useRegister()
+    const { register, registerationHandler, registerationCleanFields, handleDateChange, onRegisterClicked } = useRegister()
     const [validate_email, setValidateEmail] = useState(false)
 
     useEffect(() => {
@@ -41,24 +41,48 @@ const RegistrationForm = ({modalTrigger, setModalTrigger}) => {
                             </div>
                         </div>
                     </div>
-                    <form className="w-full flex flex-col gap-5 px-10 mt-10" onSubmit={(event) => event.preventDefault()}>
-                        <div className="flex space-x-10">
-                            <InputField label="First Name" type="text" id="first_name" name="first_name" ref={refs} placeholder="First Name" value={register.first_name} onChange={registerationHandler} />
-                            <InputField label="Last Name" type="text" id="last_name" name="last_name" placeholder="Last Name" value={register.last_name} onChange={registerationHandler}  />
-                        </div>
-                        <div className="flex space-x-10">
-                            {/* <div className="relative"> */}
-                                {/* <div className="border-b-2 border-black -px-2"> */}
-                                    {/* <Sl.SlCalender className="inline-flex mr-2" /> */}
-                                    <DatePickerComponent className="peer h-10 text-black font-Poppins focus:outline-none placeholder-transparent border-gray-600 border-gray-30 text-sm w-[50%]" selected={register.birth_date} onChange={handleDateChange} />
-                                {/* </div> */}
-                                {/* <label className="font-Poppins text-sm absolute left-0 -top-3.5 peer-placeholder-shown:text-base text-gray-500 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-green-400">
-                                    Date of Birth
-                                </label>                        */}
-                            {/* </div> */}
-                            <InputField label="Last Name" type="text" id="last_name" name="last_name" placeholder="Last Name" value={register.last_name} onChange={registerationHandler}  />
+                    <form className="w-full mt-5 px-5" onSubmit={(event) => event.preventDefault()}>  
+                        {/* row 1 */}                 
+                        <div className="border-t-[2px] border-b-[2px] border-black bg-[#eee] py-2">
+                            <h1 className='text-[18px] px-5 uppercase'>Personal Information</h1>
                         </div>
 
+                        {/* row 2 */}
+                        <div className="flex space-x-10 px-5 mt-7 mb-5">
+
+                            <div className="flex flex-col gap-4">
+
+                                <Input label="First Name" type="text" id="first_name" name="first_name" ref={refs} placeholder="First Name" value={register.first_name} onChange={registerationHandler} />
+                                <Input label="Last Name" type="text" id="last_name" name="last_name" placeholder="Last Name" value={register.last_name} onChange={registerationHandler}  />
+                                <SelectInput label="Sex" type="text" id="gender" name="gender" value={register.gender} onChange={registerationHandler} data={gender} />
+                            </div>
+
+                            <div className="flex flex-col gap-4">
+                                <Input label="Email" id="email" type="email" placeholder="Email address" name="email" value={register.email} onChange={registerationHandler} aria-invalid={validate_email ? "false" : "true"} />
+
+                                <DatePickComponent selected={register.date_of_birth} onChange={handleDateChange} /> 
+                            </div>
+                        </div>
+
+                         {/* row  */}
+                         <div className="border-t-[2px] border-b-[2px] border-black bg-[#eee] py-2">
+                            <h1 className='text-[18px] px-5 uppercase'>Account Information</h1>
+                        </div>
+
+                        <div className="h-[300px]">
+
+                        </div>
+
+                        <div className="pt-5 flex space-x-5 justify-end">
+                            <Button 
+                                label="Save" 
+                                className="px-5 bg-[#ddd] text-xs border-[2px] border-black rounded-none hover:bg-white hover:text-black hover:ring-2 hover:ring-green-900 w-[10%]"
+                                onClick={onRegisterClicked}
+                            
+                            />
+                            <Button label="Clear" className="px-5 bg-[#ddd] text-sm border-none rounded-none hover:bg-white hover:text-black hover:ring-2 hover:ring-green-900 w-[10%]" onClick={registerationCleanFields}/>
+    
+                        </div>
 
 
                     </form>

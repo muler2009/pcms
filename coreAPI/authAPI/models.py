@@ -43,19 +43,20 @@ class UserAuthentiacation(AbstractBaseUser, PermissionsMixin):
 class UsersProfile(models.Model):
 
     class GENDER(models.TextChoices):
-        MALE = "MALE", 'male'
-        FEMALE = 'FEMALE', 'female'
+        Male = "Male", 'Male'
+        Female = 'Female', 'Female'
 
     first_name = models.CharField(
         max_length=50, verbose_name="First Name", blank=True)
     last_name = models.CharField(
         max_length=50, verbose_name="Last Name", blank=True)
-    date_of_birth = models.DateField(default=date(2000, 1, 1))
+    date_of_birth = models.DateField(
+        default=date(2000, 1, 1), null=True, blank=True)
     gender = models.CharField(max_length=10, choices=GENDER.choices)
     email = models.EmailField(
         verbose_name="Email address", max_length=50, unique=True, blank=False)
-    user = models.OneToOneField(
-        'UserAuthentiacation', on_delete=models.CASCADE, related_name='info')
+    # user = models.OneToOneField(
+    #     'UserAuthentiacation', on_delete=models.CASCADE, related_name='info')
 
     class Meta:
         ordering = ["first_name"]

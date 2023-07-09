@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics, permissions, status
 from rest_framework.request import Request
 from rest_framework.response import Response
-from .models import UserAuthentiacation
+from .models import UserAuthentiacation, UsersProfile
 
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -32,7 +32,8 @@ class UserLogoutView(generics.CreateAPIView):
 
 # Registering the New user
 class RegisterNewUser(generics.CreateAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    queryset = UsersProfile.objects.all()
+    permission_classes = [permissions.AllowAny]
     serializer_class = NewUserSerializer
 
     def create(self, request: Request, *args, **kwargs):
@@ -43,6 +44,7 @@ class RegisterNewUser(generics.CreateAPIView):
             newUser = serializer.save()  # save to the User Model
             if newUser:
                 # Response Upon successful creation
-                return Response(status=status.HTTP_201_CREATED)
+                return Response(data=serializer.data, status=status.HTTP_201_CREATED)
             # Response if there is some errors
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

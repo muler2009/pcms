@@ -4,8 +4,8 @@ import { BASE_URL } from '../../config/config';
 import { API_TAGS } from '../../config/tagsTypes';
 
 const baseQuery = fetchBaseQuery({
-      baseUrl: BASE_URL,
-    
+      baseUrl: BASE_URL,   
+      
       prepareHeaders: (headers, { getState }) => {
         headers.set('Content-Type', 'application/json') // setting the content type as json
         const token = getState().authentication.token // get the token value fron the auuthSlice             
@@ -19,12 +19,12 @@ const baseQuery = fetchBaseQuery({
 })
    
 
-// custom baseQuery function to handle if the access token expires ans make api request to refresh 
+// Custom baseQuery function to handle if the access token expires ans make api request to refresh 
 const baseQueryForReauthentication = async(args, api, extraOptions) => {
     let resultFromBaseQuery = await baseQuery(args, api, extraOptions) 
 
     // cheking if the token is expired
-    if(resultFromBaseQuery?.error?.status === 403) {
+    if(resultFromBaseQuery?.error?.status === 401) {
       // send a refresh to get access token
       const refreshResult = await baseQuery('api/token/refresh/', api, extraOptions)
       if(refreshResult?.data) {
