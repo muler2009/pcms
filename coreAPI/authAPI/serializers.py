@@ -13,6 +13,14 @@ class UsersSerializer(serializers.ModelSerializer):
         model = UserAuthentiacation
         fields = '__all__'
 
+        # overiding the creation process of the user instance based on manager
+        def create(self, validated_data):
+            # remove the password field and create separetly
+            password = validated_data.pop(password)
+            user = UserAuthentiacation.objects.create_user(
+                password=password, **validated_data)
+            return user
+
 
 class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -29,7 +37,7 @@ class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
 # user registration serializer form the front end
 
 
-class NewUserSerializer(serializers.ModelSerializer):
+class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UsersProfile
         fields = '__all__'

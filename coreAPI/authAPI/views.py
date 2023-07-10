@@ -6,7 +6,7 @@ from .models import UserAuthentiacation, UsersProfile
 
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import UserTokenObtainPairSerializer, NewUserSerializer
+from .serializers import UserTokenObtainPairSerializer, UserProfileSerializer, UsersSerializer
 
 
 # Create your views here.
@@ -31,20 +31,26 @@ class UserLogoutView(generics.CreateAPIView):
 
 
 # Registering the New user
+class RegisterNewUserAuthentication(generics.CreateAPIView):
+    serializer_class = UsersSerializer
+    permission_classes = [permissions.IsAdminUser]
+
+
+# Registering the New user
 class RegisterNewUser(generics.CreateAPIView):
-    queryset = UsersProfile.objects.all()
-    permission_classes = [permissions.AllowAny]
-    serializer_class = NewUserSerializer
+    serializer_class = UserProfileSerializer
 
     def create(self, request: Request, *args, **kwargs):
-        # creating the new serializer instastance with the incoming data
+        # creating the new serializer instance with data requested
         serializer = self.get_serializer(data=request.data)
         # Checking if the request data is valid
         if serializer.is_valid():
-            newUser = serializer.save()  # save to the User Model
-            if newUser:
-                # Response Upon successful creation
+            newUserCreated = serializer.save()  # save the new User
+            if newUserCreated:
+                # Response upon successful creation
                 return Response(data=serializer.data, status=status.HTTP_201_CREATED)
-            # Response if there is some errors
+
+            # Response if there is an error
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+         # Response if there is an error
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

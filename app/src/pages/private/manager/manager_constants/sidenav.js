@@ -3,22 +3,22 @@ import * as FaIcons from 'react-icons/fa';
 import * as FcIcons from 'react-icons/fc';
 
 import * as RiIcons from 'react-icons/ri';
-import * as GrIcons from 'react-icons/gr';
-import * as BiIcons from 'react-icons/bi';
+import * as HiIcons from 'react-icons/hi2';
+import * as GiIcons from 'react-icons/gi';
 import * as IoIcons from 'react-icons/io5';
 import * as MdIcons from 'react-icons/md';
 import * as VscIcon from 'react-icons/vsc';
 
 
-export const sidebar_link = [
+export const sidenav =[
     { 
-        path: "/admin", 
+        path: "/manager", 
         label: "Overview", 
         icon: <AiIcons.AiOutlineDashboard /> 
     },
     { 
-       
-        label: "Account Managment", 
+      
+        label: "Add Project", 
         icon: <FaIcons.FaUserCog />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,    
@@ -38,33 +38,25 @@ export const sidebar_link = [
         ] 
     },
     { 
-        path: "cmp", 
-        label: "Content Management", 
+        path: "materials", 
+        label: "Materials", 
         icon: <MdIcons.MdOutlineContentPasteSearch /> 
     },
     { 
-        path: "report", 
-        label: "Report and Analytics", 
-        icon: <VscIcon.VscReport /> 
+        path: "word_order", 
+        label: "Work Orders", 
+        icon: <IoIcons.IoBagHandleOutline /> 
+    },
+    { 
+        path: "photo_document", 
+        label: "Photo and Documents", 
+        icon: <HiIcons.HiOutlinePhoto /> 
+    },
+    { 
+        path: "finance", 
+        label: "Financials", 
+        icon: <GiIcons.GiPayMoney /> 
     },
    
 
 ]
-
-export const account = [
-    { 
-        path: "help", 
-        label: "Help", 
-        icon: <BiIcons.BiHelpCircle /> 
-    },
-    { 
-        path: "setting", 
-        label: "Setting", 
-        icon: <IoIcons.IoSettingsOutline /> 
-    },
-
-
-]
-
-
-       

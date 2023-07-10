@@ -40,7 +40,7 @@ const SideBar = () => {
                 
 
             <div className="relative left-0 right-10 border-b-[1px] py-1 pt-12 mx-10 mb-5">
-                <h1 className="text-sm font-semibold">Account</h1>
+                <h1 className="text-sm font-semibold">System Configuration</h1>
             </div>
             <div className="flex flex-col">
                 {

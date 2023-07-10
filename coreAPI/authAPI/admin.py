@@ -6,7 +6,7 @@ from django.contrib.auth.admin import UserAdmin
 # Register your models here.
 
 class UserAuthenticationAdminConfig(UserAdmin):
-    list_display = ('email', 'username', 'user_role',
+    list_display = ('username', 'user_role',
                     'is_staff', 'is_superuser')
     add_fieldsets = (
         (None, {
@@ -22,4 +22,4 @@ admin.site.register(UserAuthentiacation, UserAuthenticationAdminConfig)
 @admin.register(UsersProfile)
 class UserProfileAdminConfig(admin.ModelAdmin):
     list_display = ('first_name', 'last_name',
-                    'date_of_birth', 'gender', 'email')
+                    'date_of_birth', 'gender')

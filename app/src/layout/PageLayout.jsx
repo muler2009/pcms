@@ -9,7 +9,7 @@ export const PageLayout = () => {
         <main className="flex-1">
             <Outlet />
         </main>
-        <Footer />
+      
     </React.Fragment>
   )
 }

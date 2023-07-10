@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-const Sidemenu = (props) => {
+const SidebarSubMenuNav = (props) => {
   
     const { sideParent, controller } = props
     const [subnav, setSubnav] = useState(false);
@@ -14,7 +14,7 @@ const Sidemenu = (props) => {
                   <Link 
                     to={sideParent.path} 
                     onClick={sideParent.submenu && showSubnav} 
-                    className={`flex justify-between px-2 ${!controller && 'hover:bg-inherit hover:border-none focus:border-none'} text-[#4c586e] font-semibold hover:bg-[#EEE] hover:text-[#006] hover:scale-[1.005] focus:bg-[#eee] focus:border-r-[5px] focus:border-green-700`}> 
+                    className={`flex justify-between px-2 ${!controller && 'hover:bg-inherit hover:border-none focus:border-none'} text-[#4c586e] font-semibold hover:bg-[#EEE] hover:text-[#006] hover:scale-[1.005]  focus:bg-[#eee] focus:border-r-[5px] focus:border-green-700`}> 
                         <div className={`flex items-center justify-center space-x-2 py-3 px-3 `}>
                           <div size={20}>{sideParent.icon}</div>
                           <h2 className={`duration-500 font-Poppins text-sm ${!controller && 'opacity-0 translate-x-28 overflow-hidden'}`}>{sideParent.label}</h2>
@@ -34,7 +34,7 @@ const Sidemenu = (props) => {
                           subnav && 
                             sideParent.submenu.map((item, index) => {
                               return(
-                                <Link to={item.path} key={index} className={`pl-5 flex items-center space-x-3 hover:rounded-none focus:border-r-[5px] hover:bg-[#ebecf0] focus:bg-[#eee]  focus:border-green-700`}>
+                                <Link to={item.path} key={index} className={`pl-5 flex items-center space-x-3 hover:bg-[#ebecf0] focus:bg-[#eee]  focus:border-green-700`}>
                                   {item.icon}
                                   <h1 className={`py-2 text-sm duration-500 font-Poppins ${!controller && 'opacity-0 translate-x-28 overflow-hidden'}`}>
                                   {item.label}
@@ -51,4 +51,4 @@ const Sidemenu = (props) => {
   }
 
 
-  export default Sidemenu;
+  export default SidebarSubMenuNav;

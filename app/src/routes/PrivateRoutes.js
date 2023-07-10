@@ -3,6 +3,7 @@ import Test from "../pages/test_page/Test";
 import MainDashboard from "../pages/private/sys_admin/admin_pages/MainDashboard";
 import UserList from "../pages/private/sys_admin/admin_pages/UserList";
 import UserManagementLayout from "../pages/private/sys_admin/admin_layout/UserManagementLayout";
+import ManagerDashoard from "../pages/private/manager/manager_layout/ManagerDashoard";
 
 export const AdminPrivateRoutes = () =>{
     let adminRoutes = useRoutes([
@@ -30,4 +31,17 @@ export const AdminPrivateRoutes = () =>{
 }
 
 
+export const ManagerPrivateRoutes = () => {
+  let routes = useRoutes([
+    { path: "/manager", element: <ManagerDashoard />},
+    { path: "add_project", element: <h1>Add project activities</h1>},
+    { path: "materials", element: <h1>Materials activities</h1>},
+    { path: "word_order", element: <h1>Work Orders</h1>},
+    { path: "photo_document", element: <h1>Photo document</h1>},
+    { path: "finance", element: <h1>Financials</h1>},
+
+  ])
+
+  return routes;
+}
 

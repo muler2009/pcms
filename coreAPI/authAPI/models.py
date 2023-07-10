@@ -37,9 +37,8 @@ class UserAuthentiacation(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return f'{self.username}'
 
+
 # User profile information model
-
-
 class UsersProfile(models.Model):
 
     class GENDER(models.TextChoices):
@@ -53,10 +52,10 @@ class UsersProfile(models.Model):
     date_of_birth = models.DateField(
         default=date(2000, 1, 1), null=True, blank=True)
     gender = models.CharField(max_length=10, choices=GENDER.choices)
-    email = models.EmailField(
-        verbose_name="Email address", max_length=50, unique=True, blank=False)
-    # user = models.OneToOneField(
-    #     'UserAuthentiacation', on_delete=models.CASCADE, related_name='info')
+    # email = models.EmailField(
+    #     verbose_name="Email address", max_length=50, unique=True, blank=False)
+    user = models.OneToOneField(
+        UserAuthentiacation, on_delete=models.CASCADE, related_name='profile')
 
     class Meta:
         ordering = ["first_name"]
