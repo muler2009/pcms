@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { useLoginMutation, useLogoutMutation } from '../../api/authApiSlice'
+import { useLoginMutation, useLogoutMutation, getCSRFToken } from '../../api/authApiSlice'
+
 
 export const login = createAsyncThunk(
     'auth/login', async(credential) => {
@@ -24,13 +25,24 @@ export const logout = createAsyncThunk(
     }
 );
 
+export const getcsrfToken = createAsyncThunk(
+    'auth/getcsrfToken', async() => {
+        try{
+            const response = await getCSRFToken().unwrap()
+            return response?.data.csrftoken
+        }catch(error){
+            console.log(error)
+        }
+    }
+)
 
 // is a slice for working with token state
 const initialState = {
     isAuthenticated: false,
     user: null,
     accessToken: localStorage.getItem('token') || null,
-    refreshToken: localStorage.getItem('refesh_token') || null
+    refreshToken: localStorage.getItem('refesh') || null,
+    csrftoken: null
 }
 const authSlice = createSlice({
     name: "authentication",
@@ -43,6 +55,7 @@ const authSlice = createSlice({
             state.accessToken = access;
             state.refreshToken =  refresh;
             localStorage.setItem("token", access);
+            localStorage.setItem("refresh", refresh);
             
         },
         clearAuthData: (state) => {
@@ -51,23 +64,31 @@ const authSlice = createSlice({
             state.accessToken = null;
             state.refreshToken = null;
             localStorage.removeItem("token");
+            localStorage.removeItem("refresh");
+
+        },
+        setCsrfToken: (state, action) => {
+            state.csrftoken = action.payload; 
         }
     }, 
     extraReducers: (builder) => {
         builder
         .addCase(login.fulfilled, (state, action) => {
             // Just Invoking the setAuthData reducers of when login fullfilled
-            builder.addCase(setAuthData(action.payload))
+            setAuthData(state, action)
         })
         .addCase(logout.fulfilled, (state,action) => {
             // Just Invoking the setAuthData reducers of when login fullfilled
-            builder.addCase(clearAuthData())
+            clearAuthData(state)
+        })
+        .addCase(getcsrfToken.fulfilled, (state, action) => {
+            setCsrfToken(state, action)
         })
     }
 })
 
 // exporting individual reducers
-export const { setAuthData, clearAuthData } = authSlice.actions
+export const { setAuthData, clearAuthData, setCsrfToken } = authSlice.actions
 // exporting individual state 
 export default authSlice.reducer
 
@@ -75,6 +96,8 @@ export default authSlice.reducer
 export const currentUser = (state) => state.authentication.user
 export const access_token = (state) => state.authentication.accessToken
 export const refesh_token = (state) => state.authentication.refreshToken
+export const csrftoken = (state) => state.authentication.csrftoken
+
 
 
 

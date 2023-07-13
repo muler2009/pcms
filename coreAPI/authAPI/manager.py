@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class UserAccountManager(BaseUserManager):
-    def create_user(self, email, username, password, user_role, **extra_fields):
+    def create_user(self, email, username, password=None, user_role=None, **extra_fields):
 
         # checking the email is provided or not
         if not email:

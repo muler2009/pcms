@@ -8,10 +8,12 @@ import {
 } from 'react-table'
 import { InnerContainer, OuterContainer } from '../../assets/css/Container'
 import ShowDataEntries from './ShowDataEntries'
-import Search from './Search'
+import Search from './Search';
 
 
-const TableStructureT = ({columns, data}) => {
+
+const TableStructureT = ({ columns, data, useAction }) => {
+
 
   // Creating the table with row and columns recieved form props  
   const tableVersionTwoInstance = useTable(
@@ -34,20 +36,20 @@ const TableStructureT = ({columns, data}) => {
     headerGroups,
     rows,
     prepareRow,
-    selectedFlatRows,
+    //selectedFlatRows,
     state: { globalFilter, selectedRowIds, pageIndex, pageSize },
-    visibleColumns,
+   // visibleColumns,
     preGlobalFilteredRows,
     setGlobalFilter,
-    page,
-    previousPage,
-    nextPage,
-    pageCount,
-    canNextPage,
-    canPreviousPage,
+    // page,
+    // previousPage,
+    // nextPage,
+    // pageCount,
+    // canNextPage,
+    // canPreviousPage,
     setPageSize,
-    pageOptions,
-    gotoPage,
+    //pageOptions,
+   // gotoPage,
     
    } = tableVersionTwoInstance
 

@@ -4,6 +4,7 @@ import MainDashboard from "../pages/private/sys_admin/admin_pages/MainDashboard"
 import UserList from "../pages/private/sys_admin/admin_pages/UserList";
 import UserManagementLayout from "../pages/private/sys_admin/admin_layout/UserManagementLayout";
 import ManagerDashoard from "../pages/private/manager/manager_layout/ManagerDashoard";
+import { RegistrationForm } from "../pages/private/sys_admin/admin_component";
 
 export const AdminPrivateRoutes = () =>{
     let adminRoutes = useRoutes([
@@ -22,7 +23,7 @@ export const AdminPrivateRoutes = () =>{
 
           ]
         },
-        { path: "cmp", element: <h1>Content Management</h1> },
+        { path: "cmp", element: <h1>Content UserManagementLayout</h1> },
         { path: "help", element: <h1>System Help</h1> },
 
       ]);

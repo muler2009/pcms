@@ -43,11 +43,15 @@ const useLogin = () => {
     try{
       const response = await login(loginCredentials).unwrap() 
     
-      const { access } = response
+      // destructure the access and the refresh token from the response
+      const { access, refresh } = response
 
+      // storing the token in the browser local stroage
       localStorage.setItem('token', access)
+      localStorage.setItem('refresh', refresh)
 
-      dispatch(setAuthData({isAuthenticated: true, access}));
+      // dispatching setAuth method to update the reducer value
+      dispatch(setAuthData({isAuthenticated: true, access, refresh}));
 
       navigate('/admin')
       

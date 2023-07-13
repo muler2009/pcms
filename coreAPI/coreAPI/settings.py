@@ -24,9 +24,12 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt',
 
     # endpoints
     'authAPI.apps.AuthAPIConfig',
+    'user_profile'
+
 ]
 
 MIDDLEWARE = [
@@ -39,6 +42,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# CSRF related configuration
+
+CSRF_COOKIE_SECURE = True
+
+CSRF_COOKIE_HTTPONLY = True
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',
+]
+
 
 ROOT_URLCONF = 'coreAPI.urls'
 
@@ -136,7 +150,7 @@ REST_FRAMEWORK = {
     ),
     # Use Django's standard `django.contrib.auth` permissions,
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.IsAuthenticated',
     ),
 }
 
@@ -145,9 +159,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
+
 # Project Configuration for JWT Authentication
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
@@ -174,8 +189,10 @@ SIMPLE_JWT = {
 
     "JTI_CLAIM": "jti",
 
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+
     "SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
-    "SLIDING_TOKEN_LIFETIME": timedelta(minutes=5),
+    "SLIDING_TOKEN_LIFETIME": timedelta(hours=5),
     "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
 
     # "TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainPairSerializer",
@@ -186,9 +203,4 @@ SIMPLE_JWT = {
     "TOKEN_BLACKLIST_SERIALIZER": "rest_framework_simplejwt.serializers.TokenBlacklistSerializer",
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
-
-
-
 }
-
-JWT_AUTH_COOKIE = 'token'

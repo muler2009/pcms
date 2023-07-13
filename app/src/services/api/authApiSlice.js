@@ -3,6 +3,12 @@ import { apiSlice } from "./apiSlice";
 
 export const authApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
+        getCSRFToken: builder.query({
+            query: () => ({
+                url: `api/csrf_cookie/`,
+                method: "GET"
+            })
+        }),
         login: builder.mutation({
             query: credentials => ({
                 url: `api/token/`,
@@ -25,8 +31,11 @@ export const authApiSlice = apiSlice.injectEndpoints({
     })
 })
 
+export const getCSRFToken = authApiSlice.endpoints.getCSRFToken 
+
 export const {
     useLoginMutation,
-    useLogoutMutation
+    useLogoutMutation,
+    useGetCSRFTokenQuery
   
 } = authApiSlice

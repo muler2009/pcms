@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .manager import UserAccountManager
 from datetime import date
+from django.conf import settings
 
 
 class UserAuthentiacation(AbstractBaseUser, PermissionsMixin):
@@ -13,11 +14,14 @@ class UserAuthentiacation(AbstractBaseUser, PermissionsMixin):
     default_role = ROLE.STAFF
 
     # defining the custom fileds for User Authenticaion models
-    email = models.EmailField(
-        verbose_name="Email address", max_length=50, unique=True, blank=False)
+    # id = models.AutoField(primary_key=True)
+
+    email = models.EmailField(verbose_name="Email address", max_length=50,
+                              unique=True, blank=True)
     username = models.CharField(
         max_length=200, unique=True, null=False, blank=False)
     user_role = models.CharField(max_length=50, choices=ROLE.choices)
+    # used to control the access and permission on
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
@@ -36,31 +40,3 @@ class UserAuthentiacation(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f'{self.username}'
-
-
-# User profile information model
-class UsersProfile(models.Model):
-
-    class GENDER(models.TextChoices):
-        Male = "Male", 'Male'
-        Female = 'Female', 'Female'
-
-    first_name = models.CharField(
-        max_length=50, verbose_name="First Name", blank=True)
-    last_name = models.CharField(
-        max_length=50, verbose_name="Last Name", blank=True)
-    date_of_birth = models.DateField(
-        default=date(2000, 1, 1), null=True, blank=True)
-    gender = models.CharField(max_length=10, choices=GENDER.choices)
-    # email = models.EmailField(
-    #     verbose_name="Email address", max_length=50, unique=True, blank=False)
-    user = models.OneToOneField(
-        UserAuthentiacation, on_delete=models.CASCADE, related_name='profile')
-
-    class Meta:
-        ordering = ["first_name"]
-        verbose_name = "Users Profile"
-        db_table = "UserProfile"
-
-    def __str__(self):
-        return f"{self.first_name}"

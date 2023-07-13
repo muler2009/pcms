@@ -3,9 +3,16 @@ import { apiSlice } from "../../api/apiSlice";
 
 const userApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
+        getUsersProfile: builder.query({
+            query: () => ({
+                url: `user-profile/fetchUserProfile/`,
+                method: "GET"
+            })
+        }),
+
         addUsers: builder.mutation({
             query: userData => ({
-                url: `api/register/`,
+                url: `user-profile/adduser/`,
                 method: 'POST',
                 body: userData
             }),
@@ -18,5 +25,6 @@ const userApiSlice = apiSlice.injectEndpoints({
 export const addUsers = userApiSlice.endpoints.addUsers
 
 export const { 
+    useGetUsersProfileQuery,
     useAddUsersMutation
 } = userApiSlice

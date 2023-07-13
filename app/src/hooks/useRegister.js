@@ -1,9 +1,11 @@
 import {useState} from 'react'
 import { useAddUsersMutation } from '../services/features/user/userApiSlice'
+import { useGetCSRFTokenQuery } from '../services/api/authApiSlice'
 
 
 const useRegister = () => {
 
+  const {data: csrftoken} = useGetCSRFTokenQuery()
   const [addUsers] = useAddUsersMutation()
 
   const [register, set] = useState({
@@ -59,10 +61,15 @@ const useRegister = () => {
       const registerData = {
         ...register,
         date_of_birth: register.date_of_birth.toISOString().slice(0, 10),
+        csrfmiddlewaretoken: csrftoken, 
       };
-      const response = await addUsers(registerData).unwrap(); // Call addUser function
+
+      
+
+      const response = await addUsers(registerData).unwrap() // Call addUser function
       const data = response.data; // Extract the data from the response
       if (response.status === 201) {
+        registerationCleanFields()
         console.log('Congratulations, data submitted successfully');
       }
     } catch (error) {

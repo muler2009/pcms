@@ -1,13 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { InputField, SelectInput, DatePickComponent, CheckBok, Button, Input } from '../../../../components/Reuseable'
-import * as Sl from 'react-icons/sl'
-import * as Fa from 'react-icons/fa'
+import { useSelector } from 'react-redux'
+import { csrftoken } from '../../../../services/features/auth/authSlice'
 import * as VscIcons from 'react-icons/vsc'
 import { gender } from '../constants/department'
 import useRegister from '../../../../hooks/useRegister'
 import { OuterContainer, InnerContainer } from '../../../../assets/css/Container'
 
+
+
 const RegistrationForm = ({modalTrigger, setModalTrigger}) => {
+
+    const csrfToken = useSelector(csrftoken)
 
     const refs = useRef()
     const EMAIL_VALIDATOR_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -36,13 +40,15 @@ const RegistrationForm = ({modalTrigger, setModalTrigger}) => {
                             <p className="ml-auto pr-5 block text-[#c4c0c0] ">User registration form</p>
                             <div className='ml-auto pr-5 mt-4'>
                                 <div className="flex items-center bg-red-600 py-1 px-5 text-white cursor-pointer" onClick={() => setModalTrigger(prev => !prev)}>
+                                {/*  */}
                                     <span className="mr-1"><VscIcons.VscClose /></span>close
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <form className="w-full mt-5 px-5" onSubmit={(event) => event.preventDefault()}>  
-                        {/* row 1 */}                 
+                    <form className="w-full mt-5 px-5" onSubmit={(event) => event.preventDefault()}>
+                        <input type="hidden" name="csrfmiddlewaretoken" value={csrfToken} /> 
+                        {/* row 1 */}
                         <div className="border-t-[2px] border-b-[2px] border-black bg-[#eee] py-2">
                             <h1 className='text-[18px] px-5 uppercase'>Personal Information</h1>
                         </div>
@@ -60,7 +66,7 @@ const RegistrationForm = ({modalTrigger, setModalTrigger}) => {
                             <div className="flex flex-col gap-4">
                                 <Input label="Email" id="email" type="email" placeholder="Email address" name="email" value={register.email} onChange={registerationHandler} aria-invalid={validate_email ? "false" : "true"} />
 
-                                <DatePickComponent selected={register.date_of_birth} onChange={handleDateChange} /> 
+                                <DatePickComponent selected={register.date_of_birth} onChange={handleDateChange} />
                             </div>
                         </div>
 
@@ -74,14 +80,14 @@ const RegistrationForm = ({modalTrigger, setModalTrigger}) => {
                         </div>
 
                         <div className="pt-5 flex space-x-5 justify-end">
-                            <Button 
-                                label="Save" 
+                            <Button
+                                label="Save"
                                 className="px-5 bg-[#ddd] text-xs border-[2px] border-black rounded-none hover:bg-white hover:text-black hover:ring-2 hover:ring-green-900 w-[10%]"
                                 onClick={onRegisterClicked}
-                            
+
                             />
                             <Button label="Clear" className="px-5 bg-[#ddd] text-sm border-none rounded-none hover:bg-white hover:text-black hover:ring-2 hover:ring-green-900 w-[10%]" onClick={registerationCleanFields}/>
-    
+
                         </div>
 
 

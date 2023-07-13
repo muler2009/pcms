@@ -1,9 +1,12 @@
 import { AllNotification, UnreadNotification } from "./Contents";
 
 export const MODULE_COLUMN = [
-    { Header: 'Name', accessor: 'name' },
-    { Header: 'Age', accessor: 'age' },
-    { Header: 'City', accessor: 'city' },
+    { Header: 'First Name', accessor: 'first_name' },
+    { Header: 'Last Name', accessor: 'last_name' },
+    { Header: 'Sex', accessor: 'gender' },
+    { Header: 'Birth Date', accessor: 'date_of_birth' },
+    { Header: 'E-mail', accessor: 'email' },
+
     
 ];
 

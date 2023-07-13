@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { addUsers } from "./userApiSlice";
 
-const add_user = createAsyncThunk(
+const addUser = createAsyncThunk(
     "users/addusers", async(userData) => {
         try {
             const adduserResponse = await addUsers(userData).unwrap()
@@ -22,8 +22,8 @@ const userSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(add_user.fulfilled, (state, action) => {
-                state.user = action.payload.user
+            .addCase(addUser.fulfilled, (state, action) => {
+                state.user = action.payload
             })
     }  
 })
