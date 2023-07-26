@@ -30,6 +30,35 @@
     background-color: #f0f0f0;
   }
 
+
+
+  .react-datepicker-wrapper > input {
+    padding-right: 40px;
+  }
+  
+  .react-datepicker-wrapper.relative > input {
+    padding-right: 10px;
+  }
+  
+  .react-datepicker-wrapper.relative:before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
+  
+  .react-datepicker-wrapper.relative:before svg {
+    width: 20px;
+    height: 20px;
+  }
+
 /* Customize the react-calander */
 .react-calendar {
   width: 350px;

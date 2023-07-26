@@ -14,13 +14,13 @@ const Search = (props) => {
     }, 1000)
 
     return(
-        <OuterContainer className={`py-2`}>
+        <OuterContainer className={`flex flex-col gap-2`}>
             <label htmlFor="search" className={`font-Roboto font-semibold text-md `}>{title}:</label>
             <input 
                 type="text"
                 id="search" 
                 name="search" 
-                className="input-sm py-1"
+                className="input-sm rounded-none w-10/12 "
                 placeholder={`${totalRows} records `}
                 value={searchResult || ''}
                 onChange={(event) => {

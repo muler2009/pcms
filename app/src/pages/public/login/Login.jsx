@@ -1,37 +1,88 @@
-import React, {useEffect, useRef, useState } from 'react'
-import * as Hi from 'react-icons/hi'
-import * as Fa from 'react-icons/fa'
-import * as Md from 'react-icons/md'
-import { Input, InputField } from '../../../components/Reuseable'
-import { IconContainer, Text } from '../../../assets/css/Container'
-import useLogin from '../../../hooks/useLogin'
-import { LoginErrorMessage } from '../../common/errors/LoginErrorMessage'
+import React, { useEffect, useRef, useState } from "react";
+import * as Hi from "react-icons/hi";
+import * as Fa from "react-icons/fa";
+import * as Md from "react-icons/md";
+import { Input, InputField } from "../../../components/Reuseable";
+import { IconContainer, Text } from "../../../assets/css/Container";
+import useLogin from "../../../hooks/useLogin";
+import { LoginErrorMessage } from "../../common/errors/LoginErrorMessage";
+import Cookies from "js-cookie";
+import {
+  csrf_token,
+  fetchCSRFToken,
+} from "../../../services/features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import CSRFToken from "../../common/CSRFToken";
 
 const Login = () => {
+  //const csrftoken = Cookies.get("csrftoken");
+  const csrfToken = useSelector(csrf_token);
 
-  
-  const { loginCredentials, InputchangeHandler, onloginClicked, loginFailedModal, setLoginFailedModal, errorMessage, loginError } = useLogin()
+  const dispatch = useDispatch();
+
+  const {
+    loginCredentials,
+    InputchangeHandler,
+    onloginClicked,
+    loginFailedModal,
+    setLoginFailedModal,
+    errorMessage,
+    loginError,
+  } = useLogin();
+
+  useEffect(() => {
+    dispatch(fetchCSRFToken());
+    console.log(csrfToken);
+  }, []);
+
   return (
     <>
-    
-  {/* <div className="bg-bg-img object-cover object-center container mx-auto"> */}
-        <div className="flex flex-col justify-center items-center py-10 mt-10">
-            <form className="w-1/2 mx-auto border-[1px] px-5 py-10 rounded-lg" onClick={(event) => event.preventDefault()}>
-              <div className="flex justify-center items-center">
-                <Hi.HiUserCircle className="text-opacity-30 text-red-700 text-[120px]" />
-                {/* <img src={image} className="w-[150px]" alt="Company Logo" /> */}
-              </div>
-              <div className="flex flex-col gap-10 px-5 my-10">           
-                  <InputField label="Username" type="text" id="username" name="username" required placeholder="username" value={loginCredentials.username} onChange={InputchangeHandler} loginError=       {loginError && loginCredentials.username} >
-                      <Fa.FaUser size={20} />
-                  </InputField>
-                  {/* password filed */}
-                <InputField label="Password" type="password" id="password" name="password" value={loginCredentials.password} onChange={InputchangeHandler} placeholder="Password" loginError={loginError && loginCredentials.password}>
-                    <Md.MdVpnKey size={20} />
-                </InputField>
-                <Text className="text-center">Forgot Your password ?<p className="text-xs">please contact your system administrator</p></Text>
-                <IconContainer className="flex space-x-5 cursor-pointer w-[50%] mx-auto">
-                  {/* <div className="relative">
+      {/* <div className="bg-bg-img object-cover object-center container mx-auto"> */}
+      <div className="flex flex-col justify-center items-center py-10 mt-10">
+        <form
+          className="w-1/2 mx-auto border-[1px] px-5 py-10 rounded-lg"
+          onClick={(event) => event.preventDefault()}
+        >
+          <CSRFToken />
+          <div className="flex justify-center items-center">
+            <Hi.HiUserCircle className="text-opacity-30 text-red-700 text-[120px]" />
+            {/* <img src={image} className="w-[150px]" alt="Company Logo" /> */}
+          </div>
+          <div className="flex flex-col gap-10 px-5 my-10">
+            <InputField
+              label="Username"
+              type="text"
+              id="username"
+              name="username"
+              required
+              placeholder="username"
+              value={loginCredentials.username}
+              onChange={InputchangeHandler}
+              loginError={loginError && loginCredentials.username}
+            >
+              <Fa.FaUser size={20} />
+            </InputField>
+            {/* password filed */}
+            <InputField
+              label="Password"
+              type="password"
+              id="password"
+              name="password"
+              value={loginCredentials.password}
+              onChange={InputchangeHandler}
+              placeholder="Password"
+              loginError={loginError && loginCredentials.password}
+            >
+              <Md.MdVpnKey size={20} />
+            </InputField>
+            <Text className="text-center">
+              Forgot Your password ?
+              <p className="text-xs">
+                please contact your system administrator
+              </p>
+            </Text>
+            <IconContainer className="flex space-x-5 cursor-pointer w-[50%] mx-auto">
+              {/* <div className="relative">
                     <BsArrowRightCircle size={40} color='green' onClick={onloginClicked}/>
                       <div className="hidden absolute bg-gray-900 text-white text-xs rounded py-1 px-2 whitespace-no-wrap">
                         Login
@@ -46,15 +97,21 @@ const Login = () => {
                       Tooltip text
                     </div>
                   </div> */}
-                   <button className="px-5 w-full btn-sm " onClick={onloginClicked}>Login</button>
-                </IconContainer>
-              </div>            
-            </form>
-        </div>
-          <LoginErrorMessage setLoginFailedModal={setLoginFailedModal} loginFailedModal={loginFailedModal} errorMessage={errorMessage} />
-    {/* </div> */}
+              <button className="px-5 w-full btn-sm " onClick={onloginClicked}>
+                Login
+              </button>
+            </IconContainer>
+          </div>
+        </form>
+      </div>
+      <LoginErrorMessage
+        setLoginFailedModal={setLoginFailedModal}
+        loginFailedModal={loginFailedModal}
+        errorMessage={errorMessage}
+      />
+      {/* </div> */}
     </>
-  )
-}
+  );
+};
 
 export default Login;

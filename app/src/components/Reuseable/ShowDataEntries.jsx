@@ -4,11 +4,11 @@ const ShowDataEntries = (props) => {
   const { pageSize, setPageSize } = props;
   return (
     <React.Fragment>
-        <div className="flex flex-col">
-          <h1 className="font-Roboto py-1">Result</h1>
+        <div className="flex flex-col gap-2">
+          <h1 className="font-Roboto">Result</h1>
           <div className={`flex justify-start`}>
             <select
-              className="w-full select-sm py-1 px-6 font-Roboto font-semibold text-md"
+              className="w-full select-sm py-1 px-6 font-Roboto font-semibold text-md rounded-none"
               type="number"
               value={pageSize}
               onChange={(event) => setPageSize(Number(event.target.value))}

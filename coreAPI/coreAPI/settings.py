@@ -12,7 +12,6 @@ SECRET_KEY = 'django-insecure-n!t5r2^crqua6gn-q5+z6seil$^$ani$neorwqqjysdg5s+$9u
 DEBUG = True
 # Application definition
 
-APPEND_SLASH = False
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -45,13 +44,26 @@ MIDDLEWARE = [
 
 # CSRF related configuration
 
-CSRF_COOKIE_SECURE = True
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', ]
 
-CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = False
 
-CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:3000',
-]
+CSRF_COOKIE_HTTPONLY = False
+
+CSRF_USE_SESSIONS = False
+
+CSRF_COOKIE_DOMAIN = 'localhost'
+
+CSRF_COOKIE_PATH = '/api/'
+
+# X_FRAME_OPTIONS = "ALLOWALL"
+
+CSRF_COOKIE_NAME = 'csrftoken'
+
+CSRF_HEADER_NAME = 'X-CSRFToken'
+
+
+# CSRF_COOKIE_SAMESITE = 'Lax'
 
 
 ROOT_URLCONF = 'coreAPI.urls'
@@ -73,7 +85,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'coreAPI.wsgi.application'
-
 
 # Default Database
 
@@ -155,9 +166,10 @@ REST_FRAMEWORK = {
 }
 
 # Specifying the front end
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-]
+
+CORS_ORIGIN_WHITELIST = ["http://localhost:3000", ]
+
+CORS_ALLOW_CREDENTIALS = True
 
 
 # Project Configuration for JWT Authentication

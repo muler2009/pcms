@@ -40,4 +40,7 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script>
+    window.CSRF_TOKEN = "{{ csrf_token }}";  // Pass the CSRF token to the client
+  </script>
 </html>

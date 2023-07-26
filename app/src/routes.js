@@ -20,7 +20,7 @@ const router = createBrowserRouter(
       <Route path='/register' element={<UserRegistration />} />
       <Route path='/manager/*' element={<ManagerDashoard />} />
       
-      <Route element={<RequireAuth />}>
+      <Route element={<RequireAuth/>} >
         <Route path="admin/*" element={<AdminDashboardLayout />} />        
       </Route>
 

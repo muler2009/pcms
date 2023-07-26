@@ -16,18 +16,7 @@ from django.utils.decorators import method_decorator
 # Generate the csrf_token and send to the front end
 
 
-# class GenerateCSRFTokenView(views.APIView):
-#     def get(self, request,  format=None, *args, **kwargs):
-#         if not request.COOKIES.get('csrftoken'):
-#             # generate a new CSRF token and set it in the COOKIES
-#             csrf_token = get_token('csrftoken')
-#             request.COOKIES['csrf_token'] = csrf_token
-#             # return the CSRF token in the response headers
-#         response = Response(status=204)
-#         response['x-csrftoken'] = request.COOKIES['csrf_token']
-#         return response
-
-
+@method_decorator(ensure_csrf_cookie, name='dispatch')
 class UserTokenObtainPairView(TokenObtainPairView):
     permission_classes = [permissions.AllowAny]
     serializer_class = UserTokenObtainPairSerializer
@@ -47,40 +36,20 @@ class UserLogoutView(generics.CreateAPIView):
             return Response({'error': 'Refresh token not provided.'}, status=status.HTTP_400_BAD_REQUEST)
 
 
-# Registering the New user
-class RegisterNewUserAuthentication(generics.CreateAPIView):
-    # queryset = UsersProfile.objects.all()
-    # serializer_class = UserProfileSerializer
-    pass
+class SetCookieView(views.APIView):
+    # authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
 
+    def get(self, request, *args, **kwargs):
+        csrftoken = request.COOKIES.get('csrftoken')
+        if csrftoken is None:
+            csrftoken = get_token(request)
+            response = JsonResponse(
+                {"message": "Cookie set!"}, safe=False)
+            response.set_cookie('csrftoken', csrftoken)
+            return response
+        return JsonResponse({"message": "Cookie already exists!", "csrftoken": csrftoken}, safe=False)
 
-# Registering the New user
-# class RegisterUserView(generics.CreateAPIView):
-#     # queryset = UsersProfile.objects.all()
-#     # serializer_class = UserProfileSerializer
-#     authentication_classes = [JWTAuthentication]
-#     permission_classes = [permissions.IsAdminUser]
-
-#     def create(self, request: Request, *args, **kwargs):
-
-#         # creating the new serializer instance with data requested
-#         serializer = self.get_serializer(data=request.data)
-#         # Checking if the request data is valid
-#         if serializer.is_valid():
-#             newUserCreated = serializer.save()  # save the new User
-#             user = UserAuthentiacation.objects.get['usernmae']
-#             user_profile = UserProfile(
-#                 user, first_name='', lasst_name='', email='', gender='',  date_of_birth='')
-#             user_profile.save()
-
-#             if newUserCreated:
-#                 # Response upon successful creation
-#                 return Response(data=serializer.data, status=status.HTTP_201_CREATED)
-
-#             # Response if there is an error
-#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#          # Response if there is an error
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @method_decorator(csrf_exempt, name='dispatch')
 class RegisterUserView(generics.CreateAPIView):
@@ -99,10 +68,15 @@ class RegisterUserView(generics.CreateAPIView):
 
 
 @method_decorator(ensure_csrf_cookie, name='dispatch')
-class GetCSRFToken(generics.ListAPIView):
+class GenerateCSRFTokenView(views.APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [permissions.IsAdminUser]
 
-    def list(self, request, *args, **kwargs):
-        csrftoken = get_token(request)
-        return Response({'csrftoken': csrftoken})
+    def get(self, request, *args, **kwargs):
+        print("Generating CSRF token...")
+        if not request.COOKIES.get('csrftoken'):
+            response = Response(status=204)
+            response = response.set_cookie('csrftoken', get_token(request))
+            return response  # return the response object with the Set-Cookie header set
+        # return a simple 204 response if the cookie is already set
+        return Response(status=204)

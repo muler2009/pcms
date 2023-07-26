@@ -16,6 +16,7 @@ class GetUsersProfile(generics.ListAPIView):
     permission_classes = [permissions.IsAdminUser]
 
     def get_queryset(self):
+        # queryset = UserProfile.objects.filter(first_name__startswith='M')
         queryset = UserProfile.objects.all()
         return queryset
 

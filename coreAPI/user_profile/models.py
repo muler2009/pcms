@@ -28,4 +28,4 @@ class UserProfile(models.Model):
         db_table = 'Profile'
 
     def __str__(self):
-        return f"{self.first_name}{self.last_name}"
+        return f"{self.first_name}   {self.last_name}"

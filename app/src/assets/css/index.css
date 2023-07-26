@@ -37,7 +37,7 @@
       left: 50%; 
     }
     .btn { @apply flex items-center justify-center p-4 }
-    .btn-sm { @apply p-2 h-[40px] text-sm font-Poppins font-normal }
+    .btn-sm { @apply p-2 h-[30px] text-sm font-Poppins font-normal }
     .btn-text { @apply text-center font-Quicksand text-[16px] font-normal text-black }
     .input-sm { @apply px-2 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition
                     ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none }
@@ -49,26 +49,27 @@
     }
 
     /* table css */
-    .table { @apply w-full mt-4 border-zinc-500 font-Poppins text-[14px] cursor-pointer text-sm } 
+    .table { @apply w-full mt-4 font-Poppins text-[14px] cursor-pointer text-sm border-2 border-black} 
     .table-border { @apply w-full mt-4 border-zinc-500 font-Poppins text-[14px] cursor-pointer text-sm text-left }
+    .table > thead > tr > th {
+      @apply font-normal py-2 px-4 border-[1px] border-b-2 border-gray-300 text-left;
+    }
     .table-border > thead { 
       @apply border-t-[1px] border-b-[1px];
     }
-    .table-border > tbody > tr > td { @apply border-[1px] py-0 }
     .table > thead {
-      @apply border-t-[1px] border-b-[1px];
+      @apply border-t-[1px] border-b-[1px] border-b-black;
     }
-    .table > thead > th {
-      @apply py-3 px-2 font-normal;
-    }
+
+    .table-border > tbody > tr > td { @apply border-[1px] py-0 }
     .table > tbody > td {
       @apply py-3 px-2 font-normal;
     }
     .table > tbody > tr > td {
-      @apply px-6;
+      @apply px-6 ;
     }
     .table > tbody > tr > td > h1 {
-      @apply font-normal bg-green-500 px-1 py-2 text-white;
+      @apply font-normal bg-green-500 px-1 text-white;
     }
   
     .table > :not(caption) > * > * {
@@ -81,9 +82,7 @@
     .table > tbody td {
       @apply font-normal;
     }
-    .table > thead > tr > th {
-      @apply font-normal py-3 border-[1px] text-center;
-    }
+ 
     .table > tbody {
       @apply align-baseline;
     }
@@ -98,7 +97,7 @@
     }
   
     .table-striped > tbody > tr:nth-of-type(odd) {
-      @apply bg-[#ddd];
+      @apply bg-[#eee];
     }
     .table-striped > tbody > tr:nth-of-type(even) {
       @apply bg-white;
