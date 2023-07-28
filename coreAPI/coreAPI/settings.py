@@ -42,30 +42,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# CSRF related configuration
-
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', ]
-
-CSRF_COOKIE_SECURE = False
-
-CSRF_COOKIE_HTTPONLY = False
-
-CSRF_USE_SESSIONS = False
-
-CSRF_COOKIE_DOMAIN = 'localhost'
-
-CSRF_COOKIE_PATH = '/api/'
-
-# X_FRAME_OPTIONS = "ALLOWALL"
-
-CSRF_COOKIE_NAME = 'csrftoken'
-
-CSRF_HEADER_NAME = 'X-CSRFToken'
-
-
-# CSRF_COOKIE_SAMESITE = 'Lax'
-
-
 ROOT_URLCONF = 'coreAPI.urls'
 
 TEMPLATES = [
@@ -148,15 +124,18 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# =========================================================================#
+# Project specific configurations
+# =========================================================================#
+
 # setting the custom authenication Model for the system
-AUTH_USER_MODEL = 'authAPI.UserAuthentiacation'
+AUTH_USER_MODEL = 'authAPI.UserAccount'
 
 # Authentication and Permission framworks used for the project
 REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     # Use Django's standard `django.contrib.auth` permissions,
@@ -174,45 +153,6 @@ CORS_ALLOW_CREDENTIALS = True
 
 # Project Configuration for JWT Authentication
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(hours=5),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-    "ROTATE_REFRESH_TOKENS": True,
-    "BLACKLIST_AFTER_ROTATION": True,
-    "UPDATE_LAST_LOGIN": False,
-
-    "ALGORITHM": "HS256",
-    "SIGNING_KEY": SECRET_KEY,
-    "VERIFYING_KEY": "",
-    "AUDIENCE": None,
-    "ISSUER": None,
-    "JSON_ENCODER": None,
-    "JWK_URL": None,
-    "LEEWAY": 0,
-
-    "AUTH_HEADER_TYPES": ("Bearer",),
-    "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
-    "USER_ID_FIELD": "id",
-    "USER_ID_CLAIM": "user_id",
-    "USER_AUTHENTICATION_RULE": "rest_framework_simplejwt.authentication.default_user_authentication_rule",
-
-    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
-    "TOKEN_TYPE_CLAIM": "token_type",
-    "TOKEN_USER_CLASS": "rest_framework_simplejwt.models.TokenUser",
-
-    "JTI_CLAIM": "jti",
-
-    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
-
-    "SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
-    "SLIDING_TOKEN_LIFETIME": timedelta(hours=5),
-    "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
-
-    # "TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainPairSerializer",
-
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "TOKEN_OBTAIN_SERIALIZER": "authAPI.serializers.UserTokenObtainPairSerializer",
-    "TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSerializer",
-    "TOKEN_VERIFY_SERIALIZER": "rest_framework_simplejwt.serializers.TokenVerifySerializer",
-    "TOKEN_BLACKLIST_SERIALIZER": "rest_framework_simplejwt.serializers.TokenBlacklistSerializer",
-    "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
-    "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }

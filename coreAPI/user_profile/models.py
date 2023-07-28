@@ -1,6 +1,6 @@
 from django.db import models
 # Create your models here.
-from authAPI.models import UserAuthentiacation
+
 from datetime import date
 
 

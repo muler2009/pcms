@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserAuthentiacation
+from .models import UserAccount
 from django.contrib.auth.admin import UserAdmin
 
 
@@ -17,7 +17,7 @@ from django.contrib.auth.admin import UserAdmin
 #     # )
 
 
-admin.site.register(UserAuthentiacation)
+admin.site.register(UserAccount)
 
 
 # @admin.register(UsersProfile)

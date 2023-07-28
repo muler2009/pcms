@@ -5,7 +5,7 @@ from datetime import date
 from django.conf import settings
 
 
-class UserAuthentiacation(AbstractBaseUser, PermissionsMixin):
+class UserAccount(AbstractBaseUser, PermissionsMixin):
     class ROLE(models.TextChoices):
         ADMINISTRATOR = "ADMINISTRATOR", 'Administrator'
         PROJECT_MANAGER = 'MANAGER', 'Project manager'
@@ -16,11 +16,15 @@ class UserAuthentiacation(AbstractBaseUser, PermissionsMixin):
     # defining the custom fileds for User Authenticaion models
     # id = models.AutoField(primary_key=True)
 
+    first_name = models.CharField(max_length=255, verbose_name="First Name")
+    last_name = models.CharField(
+        max_length=255, verbose_name="Last Name", blank=True, null=True)
     email = models.EmailField(verbose_name="Email address", max_length=50,
                               unique=True, blank=True)
     username = models.CharField(
         max_length=200, unique=True, null=False, blank=False)
-    user_role = models.CharField(max_length=50, choices=ROLE.choices)
+    user_role = models.CharField(
+        max_length=50, choices=ROLE.choices, default=ROLE.STAFF)
     # used to control the access and permission on
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -30,12 +34,12 @@ class UserAuthentiacation(AbstractBaseUser, PermissionsMixin):
 
     # Required field during authenticationn
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email', 'user_role']
+    USERNAME_FIELD = 'username'  # a field a user use to login in
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'email', 'user_role']
 
     class Meta:
         ordering = ["username"]
-        verbose_name = "User Authentication"
+        verbose_name = "User Account"
         db_table = "User_Auth"
 
     def __str__(self):

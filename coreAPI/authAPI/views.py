@@ -3,10 +3,9 @@ from rest_framework import generics, authentication, permissions, status, views
 from django.http import JsonResponse
 from rest_framework.request import Request
 from rest_framework.response import Response
-from .models import UserAuthentiacation
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import UserTokenObtainPairSerializer, UsersSerializer
+from authAPI.serializers import UserTokenObtainPairSerializer, UserCreateSerializer, UserSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.middleware.csrf import get_token
 from user_profile.models import UserProfile
@@ -14,9 +13,12 @@ from user_profile.serializers import UserProfileSerializer
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect, csrf_exempt
 from django.utils.decorators import method_decorator
 # Generate the csrf_token and send to the front end
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
-@method_decorator(ensure_csrf_cookie, name='dispatch')
+# @method_decorator(ensure_csrf_cookie, name='dispatch')
 class UserTokenObtainPairView(TokenObtainPairView):
     permission_classes = [permissions.AllowAny]
     serializer_class = UserTokenObtainPairSerializer
@@ -51,32 +53,44 @@ class SetCookieView(views.APIView):
         return JsonResponse({"message": "Cookie already exists!", "csrftoken": csrftoken}, safe=False)
 
 
-@method_decorator(csrf_exempt, name='dispatch')
-class RegisterUserView(generics.CreateAPIView):
-    serializer_class = UserProfileSerializer
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [permissions.IsAdminUser]
+class RegisterUserView(views.APIView):
 
-    def create(self, request: Request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
-            new_user = serializer.save()
-            user_profile = UserProfile(user=new_user)
-            user_profile.save()
-            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    """A registration request handler"""
+
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        data = request.data
+        serializer = UserCreateSerializer(data=data)
+
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        user = serializer.create(serializer.validated_data)
+        user = UserCreateSerializer(user)
+
+        return Response(data=user.data, status=status.HTTP_201_CREATED)
 
 
-@method_decorator(ensure_csrf_cookie, name='dispatch')
-class GenerateCSRFTokenView(views.APIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [permissions.IsAdminUser]
+# class RetriveUserView(views.APIView):
+#     permission_classes = [permissions.IsAuthenticated]
 
-    def get(self, request, *args, **kwargs):
-        print("Generating CSRF token...")
-        if not request.COOKIES.get('csrftoken'):
-            response = Response(status=204)
-            response = response.set_cookie('csrftoken', get_token(request))
-            return response  # return the response object with the Set-Cookie header set
-        # return a simple 204 response if the cookie is already set
-        return Response(status=204)
+#     def get(self, request):
+#         user = request.user
+#         serializer = UserSerializer(user)
+#         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+class RetriveUserView(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = UserSerializer
+
+    # reteriving a user the makes the request
+    def get_object(self):
+        user = self.request.user
+        return user
+
+    def retrieve(self, request, *args, **kwargs):
+        user_instance = self.get_object()
+        serializer = self.get_serializer(user_instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
