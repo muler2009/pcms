@@ -2,7 +2,7 @@ import { useRoutes, Route, Routes } from "react-router-dom";
 import MainDashboard from "../containers/private/sys_admin/admin_pages/MainDashboard";
 import User from "../containers/private/sys_admin/admin_pages/User";
 import UserManagementLayout from "../containers/private/sys_admin/admin_layout/UserManagementLayout";
-import ManagerDashoard from "../containers/private/manager/manager_layout/ManagerDashoard";
+import ManagerDashoard from "../containers/private/manager/layout/ManagerDashoard";
 import { RegistrationForm } from "../containers/private/sys_admin/admin_component";
 
 export const AdminPrivateRoutes = () => {
